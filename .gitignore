@@ -4,3 +4,7 @@ Logs/
 .vsconfig
 .vs/
 
+obj
+Assembly-CSharp.csproj
+*.csproj
+EA_JuniorClass.sln

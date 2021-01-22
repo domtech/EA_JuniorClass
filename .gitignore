@@ -8,3 +8,4 @@ obj
 Assembly-CSharp.csproj
 *.csproj
 EA_JuniorClass.sln
+debug.log

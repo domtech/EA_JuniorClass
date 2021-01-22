@@ -13,6 +13,8 @@ public class MovementInput : MonoBehaviour
 
     #region Player Animation Controller
     public Animator Anim;
+    public CharacterController CharCtrl;
+    public float MoveSpeed;
 
     float horizontal;
     float vertical;
@@ -29,7 +31,25 @@ public class MovementInput : MonoBehaviour
 
         Anim.SetFloat("IdleAndRun", speed);
 
+        if(speed > 0.01f)
+        {
+            PlayerCtrlMovement(horizontal, vertical);
+        }
+
+
     }
+
+    void PlayerCtrlMovement(float x, float z)
+    {
+
+        var dir = x * Vector3.right + z * Vector3.forward;
+
+
+        transform.forward = dir;
+
+        CharCtrl.Move(MoveSpeed * Time.deltaTime * dir);
+    }
+
 #endregion
 
 

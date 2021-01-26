@@ -1,13 +1,22 @@
 using UnityEngine;
-
+using Tur4;
 public class MovementInput : MonoBehaviour
 {
-
     #region System Function
-    // Update is called once per frame
     void Update()
     {
         SetPlayerAnimMovePam();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(null !=other.gameObject.GetComponent<Tur4Bullet>())
+        {
+            Destroy(other.gameObject);
+            //player play hit.
+            Anim.SetTrigger("Base Layer.GetHit");
+        }
+
     }
     #endregion
 
@@ -62,7 +71,8 @@ public class MovementInput : MonoBehaviour
         CharCtrl.Move(MoveSpeed * Time.deltaTime * dir);
     }
 
-#endregion
+    #endregion
 
-
+    #region GetHit
+    #endregion
 }

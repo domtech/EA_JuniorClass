@@ -3,6 +3,12 @@ using Tur4;
 public class MovementInput : MonoBehaviour
 {
     #region System Function
+
+    private void Start()
+    {
+        Cam = Camera.main;
+    }
+
     void Update()
     {
         SetPlayerAnimMovePam();
@@ -30,6 +36,8 @@ public class MovementInput : MonoBehaviour
     float speed;
     float s1;
     float s2;
+
+    Camera Cam;
 
     void SetPlayerAnimMovePam()
     {
@@ -63,8 +71,9 @@ public class MovementInput : MonoBehaviour
     void PlayerCtrlMovement(float x, float z)
     {
 
-        var dir = x * Vector3.right + z * Vector3.forward;
+        var dir = x * Cam.transform.right + z * Cam.transform.forward;
 
+        dir.y = 0f;
 
         transform.forward = dir;
 

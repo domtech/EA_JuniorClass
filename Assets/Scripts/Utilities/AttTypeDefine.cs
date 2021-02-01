@@ -1,3 +1,6 @@
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+
 namespace AttTypeDefine
 {
     public delegate void NotifySkill();
@@ -8,5 +11,8 @@ namespace AttTypeDefine
         eTrigEnd,
     }
 
+    public class GameEvent : UnityEvent { };
+
+    public class GameBtnEvent : UnityEvent<PointerEventData> { };
 
 }

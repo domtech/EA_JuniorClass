@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AnimCtrl : MonoBehaviour
 {
@@ -37,6 +38,12 @@ public class AnimCtrl : MonoBehaviour
             WeaponInst = weapongo.GetComponent<EmmaKnife>();
             WeaponInst.OnStart(this);
         }
+
+
+        JoyStickInst.FinalSkillBtnInst.PressDown.AddListener((a) => OnFinalSkillBegin(a));
+        JoyStickInst.FinalSkillBtnInst.OnDragEvent.AddListener((a) => OnFinalSkillDrag(a));
+        JoyStickInst.FinalSkillBtnInst.PressUp.AddListener((a) => OnFinalSkillEnd(a));
+
     }
     private void Update()
     {
@@ -119,10 +126,27 @@ public class AnimCtrl : MonoBehaviour
     public void OnModifyFSV()
     {
         // increase angry value. -> UI, 
+
         JoyStickInst.OnModifyFSV();
-
-
     }
+
+    public void OnFinalSkillBegin(PointerEventData data)
+    {
+        Debug.Log("OnFinalSkillBegin");
+    }
+
+    public void OnFinalSkillDrag(PointerEventData data)
+    {
+        Debug.Log("OnFinalSkillDrag");
+    }
+
+
+    public void OnFinalSkillEnd(PointerEventData data)
+    {
+        Debug.Log("OnFinalSkillEnd");
+    }
+
+
 
     #endregion
 }

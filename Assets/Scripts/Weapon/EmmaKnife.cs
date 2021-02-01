@@ -69,7 +69,7 @@ public class EmmaKnife : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
 
         var enemyActor = other.gameObject.GetComponent<NpcActor>();
         if(enemyActor != null)

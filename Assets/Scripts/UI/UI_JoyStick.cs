@@ -3,6 +3,15 @@ using UnityEngine.UI;
 
 public class UI_JoyStick : MonoBehaviour
 {
+
+    #region Sys
+
+    private void Start()
+    {
+        FinalSkillBtnInst.SetFinalSkillState(ShowFinalSkillBtn);
+    }
+    #endregion
+
     #region JoyStick
     public CommonJoyBtn CommonBtn;
     public Vector3 Dir => (CommonBtn.Dir);
@@ -13,7 +22,7 @@ public class UI_JoyStick : MonoBehaviour
     public int AngryIncrease = 10;
     public Image HighLight1;
     public Image HighLight2;
-
+    public bool ShowFinalSkillBtn => (SliderInst.value >= 100);
 
 
     public void OnModifyFSV ()
@@ -30,7 +39,12 @@ public class UI_JoyStick : MonoBehaviour
             HighLight2.enabled = true;
         }
 
+        FinalSkillBtnInst.SetFinalSkillState(ShowFinalSkillBtn);
+
     }
     #endregion
 
+    #region FinalSkill
+    public FinalSkillBtn FinalSkillBtnInst;
+    #endregion
 }

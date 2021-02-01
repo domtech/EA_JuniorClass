@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using AttTypeDefine;
 
 public class CommonJoyBtn : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
+
+    #region sys
+    void Awake()
+    {
+        PressDown = new GameBtnEvent();
+        OnDragEvent = new GameBtnEvent();
+        PressUp = new GameBtnEvent();
+    }
+    #endregion
+
     #region Joy Stick Event Callback
-    public Transform TransBackground;
-    public Transform TransHandle;
+    public Image ImageBackground;
+    public Image ImageHandle;
     public float MaxRadius;
 
-    Vector3 _Dir;
-    public Vector3 Dir => (_Dir);
+    public GameBtnEvent PressDown;
+    public GameBtnEvent OnDragEvent;
+    public GameBtnEvent PressUp;
 
+
+    protected Vector3 _Dir;
+    public Vector3 Dir => (_Dir);
 
     Vector3 PointDownPos;
     int FingerId = int.MinValue;
@@ -23,7 +37,10 @@ public class CommonJoyBtn : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
             return;
         }
 
-        TransBackground.position = PointDownPos = eventData.position;
+        ImageBackground.transform.position = PointDownPos = eventData.position;
+
+        PressDown?.Invoke(eventData);
+
 
     }
     public void OnDrag(PointerEventData eventData)
@@ -46,9 +63,12 @@ public class CommonJoyBtn : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
             y = tmp.y
         };
 
-        TransHandle.localPosition = localPos;
+        ImageHandle.transform.localPosition = localPos;
 
-        _Dir = TransHandle.localPosition.normalized;
+        _Dir = ImageHandle.transform.localPosition.normalized;
+
+        OnDragEvent?.Invoke(eventData);
+
 
 
     }
@@ -60,7 +80,10 @@ public class CommonJoyBtn : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
             return;
         }
 
-        _Dir = TransHandle.localPosition = Vector3.zero;
+        _Dir = ImageHandle.transform.localPosition = Vector3.zero;
+
+        PressUp?.Invoke(eventData);
+
 
     }
     #endregion

@@ -7,4 +7,6 @@ namespace AttTypeDefine
         eTrigBegin,
         eTrigEnd,
     }
+
+
 }

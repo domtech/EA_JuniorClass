@@ -12,7 +12,7 @@ public class AnimatorManager : MonoBehaviour
         StateInst = AnimInst.Anim.GetBehaviour<StateMachine>();
     }
 
-    public void StartAnimation(string AnimName, NotifySkill SkillReady, NotifySkill SkillBegin, NotifySkill SkillEnd)
+    public void StartAnimation(string AnimName, NotifySkill SkillReady, NotifySkill SkillBegin, NotifySkill SkillEnd, NotifySkill SkillEnd1)
     {
         AnimInst.Anim.SetTrigger(AnimName);
 
@@ -25,6 +25,11 @@ public class AnimatorManager : MonoBehaviour
         StateInst.RegisterCallback(eTrigSkillState.eTrigBegin, SkillBegin);
 
         StateInst.RegisterCallback(eTrigSkillState.eTrigEnd, ()=> {
+            
+            if(null != SkillEnd1)
+            {
+                SkillEnd1();
+            }
 
             this.InvokeNextFrame(() =>
             {

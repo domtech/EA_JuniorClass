@@ -7,11 +7,17 @@ public class MovementInput : MonoBehaviour
     private void Start()
     {
         Cam = Camera.main;
+
+        AnimCtrlInst = gameObject.GetComponent<AnimCtrl>();
+
     }
 
     void Update()
     {
-        SetPlayerAnimMovePam();
+        if(CanMove())
+        {
+            SetPlayerAnimMovePam();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,6 +33,7 @@ public class MovementInput : MonoBehaviour
     #endregion
 
     #region Player Animation Controller
+    private AnimCtrl AnimCtrlInst;
     public Animator Anim;
     public CharacterController CharCtrl;
     public float MoveSpeed;
@@ -38,6 +45,20 @@ public class MovementInput : MonoBehaviour
     float s2;
 
     Camera Cam;
+
+
+    bool CanMove()
+    {
+
+        if (AnimCtrlInst.IsPlaying)//当前是否在播放攻击动画
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
     void SetPlayerAnimMovePam()
     {

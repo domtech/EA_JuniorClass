@@ -5,7 +5,7 @@ public class AnimCtrl : MonoBehaviour
 
     #region Sys Funcs
     public Vector2[] AnimPerArray;
-
+    public UI_JoyStick JoyStickInst;
 
     AnimatorManager AnimMgr;
     Animator _Anim;
@@ -35,6 +35,7 @@ public class AnimCtrl : MonoBehaviour
         if(null != weapongo)
         {
             WeaponInst = weapongo.GetComponent<EmmaKnife>();
+            WeaponInst.OnStart(this);
         }
     }
     private void Update()
@@ -114,5 +115,14 @@ public class AnimCtrl : MonoBehaviour
 
     #endregion
 
+    #region Final Skill
+    public void OnModifyFSV()
+    {
+        // increase angry value. -> UI, 
+        JoyStickInst.OnModifyFSV();
 
+
+    }
+
+    #endregion
 }

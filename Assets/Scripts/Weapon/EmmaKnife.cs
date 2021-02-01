@@ -23,7 +23,13 @@ public class EmmaKnife : MonoBehaviour
     #endregion
 
     #region weapon mgr
-    
+
+    AnimCtrl AnimCtrlInst;
+    public void OnStart(AnimCtrl ac)
+    {
+        AnimCtrlInst = ac;
+    }
+
     public void OnStartWeaponCtrl(Animator _Anim, float _StartPer, float _EndPer)
     {
         StartPer = _StartPer;
@@ -60,7 +66,23 @@ public class EmmaKnife : MonoBehaviour
 
 
     //在有效活性期内，如果碰到敌人，那么直接把大刀的活性关闭.
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
+
+        var enemyActor = other.gameObject.GetComponent<NpcActor>();
+        if(enemyActor != null)
+        {
+            enemyActor.GetHit();
+
+            //player increase angry value;
+            AnimCtrlInst.OnModifyFSV();
+        }
+
+
+    }
+
 
     #endregion
 }

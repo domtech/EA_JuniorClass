@@ -8,12 +8,9 @@ public class NpcActor : MonoBehaviour
         Anim = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void GetHit()
     {
-        Debug.Log(other.gameObject.name);
-
         Anim.SetTrigger("Base Layer.GetHit");
-
     }
 
 }

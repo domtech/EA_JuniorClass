@@ -19,26 +19,41 @@ public class UI_JoyStick : MonoBehaviour
 
     #region Angry Slider
     public Slider SliderInst;
-    public int AngryIncrease = 10;
     public Image HighLight1;
     public Image HighLight2;
     public bool ShowFinalSkillBtn => (SliderInst.value >= 100);
 
 
-    public void OnModifyFSV ()
+    public void OnModifyFSV (int value)
     {
         var angryValue = SliderInst.value;
-        SliderInst.value += AngryIncrease;
+        SliderInst.value += value;
 
-        if(SliderInst.value >= 100 && angryValue < 100)
+
+        if (SliderInst.value >= 100 && angryValue < 100)
         {
             HighLight1.enabled = true;
         }
-        else if(SliderInst.value >= 200 && angryValue < 200)
+        else if (SliderInst.value >= 200 && angryValue < 200)
         {
             HighLight2.enabled = true;
         }
-
+        else if(SliderInst.value >= 100 && SliderInst.value < 200)
+        {
+            HighLight1.enabled = true;
+            HighLight2.enabled = false;
+        }
+        else if(SliderInst.value < 100)
+        {
+            HighLight1.enabled = false;
+            HighLight2.enabled = false;
+        }
+        else if(SliderInst.value >= 200)
+        {
+            HighLight1.enabled = true;
+            HighLight2.enabled = true;
+        }
+      
         FinalSkillBtnInst.SetFinalSkillState(ShowFinalSkillBtn);
 
     }

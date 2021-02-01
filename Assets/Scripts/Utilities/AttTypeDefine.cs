@@ -5,6 +5,13 @@ namespace AttTypeDefine
 {
     public delegate void NotifySkill();
 
+
+    public enum eSkillType
+    {
+        eAttack = 0,
+        eSkill1,
+    }
+
     public enum eTrigSkillState
     {
         eTrigBegin,

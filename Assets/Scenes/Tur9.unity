@@ -720,7 +720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.14751692, g: 0.26278377, b: 0.8018868, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -869,6 +869,7 @@ MonoBehaviour:
   - {x: 0.4, y: 0.48}
   - {x: 0.54, y: 0.6}
   JoyStickInst: {fileID: 366755720}
+  FinalSkillDis: 2
 --- !u!4 &263718049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8192508899056922081, guid: 6967377b5bd61304f9a50d54e3aaaf47, type: 3}
@@ -2222,7 +2223,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 229196414}
   m_HandleRect: {fileID: 0}
@@ -3965,6 +3966,10 @@ PrefabInstance:
       propertyPath: SliderInst
       value: 
       objectReference: {fileID: 1182332554}
+    - target: {fileID: 1755719878910578976, guid: 1e95b0ade95dae540bd4a80e52e4beef, type: 3}
+      propertyPath: AngryIncrease
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1755719878910578976, guid: 1e95b0ade95dae540bd4a80e52e4beef, type: 3}
       propertyPath: FinalSkillBtnInst
       value: 

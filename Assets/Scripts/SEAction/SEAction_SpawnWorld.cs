@@ -7,6 +7,8 @@ public class SEAction_SpawnWorld : SEAction_BaseAction
 
     public string SocketName;
 
+    public float EffectDestroyDelay;
+
     public Vector3 OffSet;
     public Vector3 OffRot;
 
@@ -28,9 +30,21 @@ public class SEAction_SpawnWorld : SEAction_BaseAction
         //spawn effect
         var effect = Instantiate(EffectSpawnInst);
 
-        effect.transform.rotation = Quaternion.Euler(OffRot);
+        var des = effect.GetComponent<SEAction_Destruction>();
+        if(null != des)
+        {
+            des.Duration = EffectDestroyDelay;
+            des.OnStart();
+        }
 
-        effect.transform.position = socket.transform.position + OffSet;
+        effect.transform.rotation = socket.transform.rotation;
+        effect.transform.Rotate(OffRot, Space.Self);
+
+        effect.transform.position = socket.transform.position;
+        effect.transform.Translate(OffSet, Space.Self);
+
+
+
     }
 
 }

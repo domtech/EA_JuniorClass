@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a0c91defb29964b880af5ff9ff15cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrigType: 0
   Duration: 1
 --- !u!1 &5967668075213298825
 GameObject:
@@ -102,8 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21591fafe0d01384e891f10ffaa244f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrigType: 0
   Duration: 0.2
   EffectSpawnInst: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
   SocketName: Prop_03
-  OffSet: {x: 0, y: 0, z: 0}
-  OffRot: {x: 0, y: 150, z: 180}
+  EffectDestroyDelay: 0.2
+  OffSet: {x: 0.5, y: -0.1, z: 0.5}
+  OffRot: {x: 5, y: 170, z: 5}

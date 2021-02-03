@@ -1,22 +1,41 @@
 using UnityEngine;
-
+using AttTypeDefine;
 public class SEAction_BaseAction : MonoBehaviour
 {
+    public eTrigType TrigType;
     public float Duration;
     float StarTime = 0f;
-    bool IsTriggered;
+    bool IsTriggered = false;
     void Start()
     {
-        IsTriggered = false;
-        StarTime = Time.time;
+
+        if(TrigType == eTrigType.eAuto)
+        {
+            StarTime = Time.time;
+            IsTriggered = true;
+        }
     }
+
+    public void OnStart ()
+    {
+        if (TrigType == eTrigType.eCondition)
+        {
+            StarTime = Time.time;
+            IsTriggered = true;
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - StarTime >= Duration && !IsTriggered)
+
+        if (!IsTriggered)
+            return;
+
+        if (Time.time - StarTime >= Duration)
         {
-            IsTriggered = true;
+            IsTriggered = false;
             TrigAction();
         }
     }

@@ -24392,6 +24392,7 @@ GameObject:
   - component: {fileID: 4600120975325910}
   - component: {fileID: 198741542255655676}
   - component: {fileID: 199720500564923422}
+  - component: {fileID: 1272338686864263956}
   m_Layer: 15
   m_Name: SwordSlash1
   m_TagString: Untagged
@@ -29268,6 +29269,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1272338686864263956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872147318604286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2721cdad344d434fb71599f7c84ad2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Duration: 0.5
 --- !u!1 &1985817477992794
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,4 +40,23 @@ public class GlobalHelper
 
         return null;
     }
+
+
+    public static GameObject InstantiateMyPrefab(string path, Vector3 pos, Quaternion rot)
+    {
+
+        var obj = Resources.Load(path);
+
+        var go = Object.Instantiate(obj) as GameObject;
+        go.name = obj.name;
+
+        go.transform.position = pos;
+        go.transform.rotation = rot;
+        go.transform.localScale = Vector3.one;
+
+        return go;
+    }
+
+   
+
 }

@@ -7,6 +7,8 @@ public class AnimCtrl : MonoBehaviour
 
     #region Sys Funcs
     public Vector2[] AnimPerArray;
+    public Vector2[] AnimSkillPerArray;
+
     public UI_JoyStick JoyStickInst;
 
     FinalSkillBtn FinalSkillInst;
@@ -18,6 +20,7 @@ public class AnimCtrl : MonoBehaviour
     string CurAnimName;
     string AttackPre = "Base Layer.Attack";
     string SkillPre = "Base Layer.Skill";
+    string SkillPrePath = "Skills/";
     bool IsReady = true;
 
     Camera Cam;
@@ -117,7 +120,21 @@ public class AnimCtrl : MonoBehaviour
         {
             IsReady = false;
 
+
+
+            //加载特效
+
+            // 规则制定 ： 你的动画如何和你的特效绑定在一起， 我怎么知道播放a动画，就去加载a特效呢？
+            //1001
+
+            var path = SkillPrePath + (1000 + _CurAnimAttackIndex).ToString();
+            var SkillPrefab = GlobalHelper.InstantiateMyPrefab(path, transform.position + Vector3.up * 1f, Quaternion.identity);
+
+            var SkillInfo = SkillPrefab.GetComponent<SEAction_SkillInfo>();
+            SkillInfo.SetOwner(gameObject);
+
             _CurAnimAttackIndex++;
+
         }
 
     }
@@ -137,10 +154,14 @@ public class AnimCtrl : MonoBehaviour
             }
 
             Item = AnimPerArray[_CurAnimAttackIndex - 2];
-
-            WeaponInst.OnStartWeaponCtrl(Anim, Item.x, Item.y);
         }
-        
+        else if(SkillType == eSkillType.eSkill1)
+        {
+            Item = AnimSkillPerArray[(int)(SkillType - 1)];
+        }
+
+        WeaponInst.OnStartWeaponCtrl(Anim, Item.x, Item.y);
+
     }
 
     void CastSkillEnd()
@@ -161,6 +182,7 @@ public class AnimCtrl : MonoBehaviour
 
     #region Final Skill
     bool IsUsingAbility = false;
+    bool IsFinishFinalSkill = false;
     Vector3 FinalSkillDir;
 
     public float FinalSkillDis = 1f;
@@ -175,6 +197,9 @@ public class AnimCtrl : MonoBehaviour
 
         if (IsUsingAbility == true)
             return;
+
+
+        IsFinishFinalSkill = true;
 
         IsUsingAbility = true;
 
@@ -198,7 +223,10 @@ public class AnimCtrl : MonoBehaviour
 
     public void OnFinalSkillDrag(PointerEventData data)
     {
-      
+
+        if (!IsFinishFinalSkill)
+            return;
+
         FinalSkillDir = FinalSkillInst.Dir.x * Cam.transform.right + FinalSkillInst.Dir.y * Cam.transform.forward;
 
         if (FinalSkillDir == Vector3.zero)
@@ -216,6 +244,10 @@ public class AnimCtrl : MonoBehaviour
 
     public void OnFinalSkillEnd(PointerEventData data)
     {
+
+        if (!IsFinishFinalSkill)
+            return;
+
         Time.timeScale = 1f;
         _GroundArrow.SetActive(false);
         FinalSkillDir = Vector3.zero;
@@ -228,6 +260,7 @@ public class AnimCtrl : MonoBehaviour
         var FinalPos = transform.position + _GroundArrow.transform.forward * FinalSkillDis;
         transform.DOMove(FinalPos, 0.7f).OnComplete(()=> {
             IsUsingAbility = false;
+            IsFinishFinalSkill = false;
         });
 
         transform.DOLookAt(FinalPos, 0.35f);

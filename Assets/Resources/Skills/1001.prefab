@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21591fafe0d01384e891f10ffaa244f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Duration: 0.2
   EffectSpawnInst: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
   SocketName: Prop_03
   OffSet: {x: 0, y: 0, z: 0}

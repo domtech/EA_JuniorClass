@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SEAction_SpawnWorld : MonoBehaviour
+public class SEAction_SpawnWorld : SEAction_BaseAction
 {
     SEAction_DataStore se;
     public GameObject EffectSpawnInst;
@@ -11,17 +11,16 @@ public class SEAction_SpawnWorld : MonoBehaviour
     public Vector3 OffRot;
 
     GameObject Owner;
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    public override void TrigAction()
+    {
         se = GetComponent<SEAction_DataStore>();
 
         Owner = se.Owner;
 
         var socket = GlobalHelper.FindGOByName(Owner, SocketName);
 
-        if(socket == null)
+        if (socket == null)
         {
             socket = Owner;
         }
@@ -32,10 +31,6 @@ public class SEAction_SpawnWorld : MonoBehaviour
         effect.transform.rotation = Quaternion.Euler(OffRot);
 
         effect.transform.position = socket.transform.position + OffSet;
-
-      
-
     }
 
-   
 }

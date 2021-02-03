@@ -1,20 +1,11 @@
 using UnityEngine;
 
-public class SEAction_Destruction : MonoBehaviour
+public class SEAction_Destruction : SEAction_BaseAction
 {
-    public float Duration;
-    float StarTime = 0f;
-    void Start()
-    {
-        StarTime = Time.time;
-    }
 
-    // Update is called once per frame
-    void Update()
+    public override void TrigAction()
     {
-        if (Time.time - StarTime >= Duration)
-        {
-            Destroy(gameObject);
-        }
+        
+        Destroy(gameObject);
     }
 }

@@ -105,8 +105,8 @@ public class AnimCtrl : MonoBehaviour
 
     void CastSkillReady()
     {
-        IsReady = true;
-        //Debug.Log("CastSkillReady");
+        if (SkillType == eSkillType.eAttack)
+            IsReady = true;
     }
 
     void CastSkillBegin()
@@ -124,7 +124,10 @@ public class AnimCtrl : MonoBehaviour
 
     void CastSkillEnd1()
     {
-      
+
+        Vector2 Item = Vector2.zero;
+            
+
         if (SkillType == eSkillType.eAttack)
         {
             if (_CurAnimAttackIndex <= 1)
@@ -133,9 +136,9 @@ public class AnimCtrl : MonoBehaviour
                 return;
             }
 
-            var item = AnimPerArray[_CurAnimAttackIndex - 2];
+            Item = AnimPerArray[_CurAnimAttackIndex - 2];
 
-            WeaponInst.OnStartWeaponCtrl(Anim, item.x, item.y);
+            WeaponInst.OnStartWeaponCtrl(Anim, Item.x, Item.y);
         }
         
     }
@@ -154,9 +157,6 @@ public class AnimCtrl : MonoBehaviour
         }
         _IsPlaying = false;
     }
-    //weapon ctrl 
-    //
-
     #endregion
 
     #region Final Skill
@@ -175,8 +175,6 @@ public class AnimCtrl : MonoBehaviour
 
         if (IsUsingAbility == true)
             return;
-
-      
 
         IsUsingAbility = true;
 
@@ -201,7 +199,6 @@ public class AnimCtrl : MonoBehaviour
     public void OnFinalSkillDrag(PointerEventData data)
     {
       
-
         FinalSkillDir = FinalSkillInst.Dir.x * Cam.transform.right + FinalSkillInst.Dir.y * Cam.transform.forward;
 
         if (FinalSkillDir == Vector3.zero)
@@ -219,14 +216,11 @@ public class AnimCtrl : MonoBehaviour
 
     public void OnFinalSkillEnd(PointerEventData data)
     {
-     
         Time.timeScale = 1f;
         _GroundArrow.SetActive(false);
         FinalSkillDir = Vector3.zero;
 
-
         OnModifyFSV(-100);
-
 
         //播放技能动画
         CastSkill(eSkillType.eSkill1);
@@ -237,12 +231,7 @@ public class AnimCtrl : MonoBehaviour
         });
 
         transform.DOLookAt(FinalPos, 0.35f);
-
-
     }
-
-
-
     #endregion
 
     #region Load Arrow

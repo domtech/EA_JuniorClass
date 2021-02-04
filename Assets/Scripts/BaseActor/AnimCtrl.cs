@@ -2,18 +2,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using AttTypeDefine;
 using DG.Tweening;
-public class AnimCtrl : MonoBehaviour
+public class AnimCtrl : BasePlayer
 {
 
     #region Sys Funcs
-    public Vector2[] AnimPerArray;
-    public Vector2[] AnimSkillPerArray;
+
 
     public UI_JoyStick JoyStickInst;
 
+    public int TYPEID = 1000;
+
     FinalSkillBtn FinalSkillInst;
     AnimatorManager AnimMgr;
-    Animator _Anim;
     int _CurAnimAttackIndex = 1;
     int MinAnimAttackIndex = 1;
     int MaxAnimAttackIndex = 3;
@@ -25,34 +25,36 @@ public class AnimCtrl : MonoBehaviour
 
     Camera Cam;
 
-    EmmaKnife WeaponInst;
+    //EmmaKnife WeaponInst;
 
     bool _IsPlaying;
     public bool IsPlaying =>(_IsPlaying);
 
     eSkillType SkillType;
 
-    public Animator Anim => (_Anim);
     private void Awake()
     {
         AnimMgr = gameObject.AddComponent<AnimatorManager>();
     }
-    private void Start()
+
+    protected override void Start()
     {
-        _Anim = GetComponent<Animator>();
+        base.Start();
+
+        TypeId = TYPEID;
+
         AnimMgr.OnStart(this);
 
         FinalSkillInst = JoyStickInst.FinalSkillBtnInst;
 
         Cam = Camera.main;
 
-        var weapongo = GlobalHelper.FindGOByName(gameObject, "greatesword");
-        if(null != weapongo)
-        {
-            WeaponInst = weapongo.GetComponent<EmmaKnife>();
-            WeaponInst.OnStart(this);
-        }
-
+        //var weapongo = GlobalHelper.FindGOByName(gameObject, "greatesword");
+        //if(null != weapongo)
+        //{
+        //    WeaponInst = weapongo.GetComponent<EmmaKnife>();
+        //    WeaponInst.OnStart(this);
+        //}
 
         JoyStickInst.FinalSkillBtnInst.PressDown.AddListener((a) => OnFinalSkillBegin(a));
         JoyStickInst.FinalSkillBtnInst.OnDragEvent.AddListener((a) => OnFinalSkillDrag(a));
@@ -120,8 +122,6 @@ public class AnimCtrl : MonoBehaviour
         {
             IsReady = false;
 
-
-
             //加载特效
 
             // 规则制定 ： 你的动画如何和你的特效绑定在一起， 我怎么知道播放a动画，就去加载a特效呢？
@@ -142,25 +142,25 @@ public class AnimCtrl : MonoBehaviour
     void CastSkillEnd1()
     {
 
-        Vector2 Item = Vector2.zero;
+        //Vector2 Item = Vector2.zero;
             
 
-        if (SkillType == eSkillType.eAttack)
-        {
-            if (_CurAnimAttackIndex <= 1)
-            {
-                Debug.LogError("Logic Error");
-                return;
-            }
+        //if (SkillType == eSkillType.eAttack)
+        //{
+        //    if (_CurAnimAttackIndex <= 1)
+        //    {
+        //        Debug.LogError("Logic Error");
+        //        return;
+        //    }
 
-            Item = AnimPerArray[_CurAnimAttackIndex - 2];
-        }
-        else if(SkillType == eSkillType.eSkill1)
-        {
-            Item = AnimSkillPerArray[(int)(SkillType - 1)];
-        }
+        //    Item = AnimPerArray[_CurAnimAttackIndex - 2];
+        //}
+        //else if(SkillType == eSkillType.eSkill1)
+        //{
+        //    Item = AnimSkillPerArray[(int)(SkillType - 1)];
+        //}
 
-        WeaponInst.OnStartWeaponCtrl(Anim, Item.x, Item.y);
+        //WeaponInst.OnStartWeaponCtrl(Anim, Item.x, Item.y);
 
     }
 

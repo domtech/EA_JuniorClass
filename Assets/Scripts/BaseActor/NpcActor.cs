@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class NpcActor : MonoBehaviour
+public class NpcActor : BasePlayer
 {
-    Animator Anim;
-    private void Start()
+    protected override void Start()
     {
-        Anim = GetComponent<Animator>();
+        base.Start();
     }
 
     public void GetHit()

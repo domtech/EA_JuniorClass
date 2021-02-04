@@ -7,8 +7,7 @@ public class SEAction_SkillInfoEditor : SEAction_BaseActionEditor
 {
     private SEAction_SkillInfo Owner;
 
-    string[] options2 = new string[] {"特效绑定世界", "特效绑定自己" };
-
+    string[] options2 = new string[] {"特效绑定世界", "特效绑定自己", "伤害绑定自己" };
 
     private void Awake()
     {
@@ -77,6 +76,15 @@ public class SEAction_SkillInfoEditor : SEAction_BaseActionEditor
                 case eSkillBindType.eEffectWorld:
                     {
                         obj.AddComponent<SEAction_SpawnWorld>();
+                        break;
+                    }
+                case eSkillBindType.eDamageOwner:
+                    {
+                        obj.AddComponent<SEActionDamage_BindOwner>();
+                        obj.AddComponent<SEAction_Destruction>();
+                        var bc = obj.AddComponent<BoxCollider>();
+                        bc.isTrigger = true;
+                        bc.enabled = false;
                         break;
                     }
             }

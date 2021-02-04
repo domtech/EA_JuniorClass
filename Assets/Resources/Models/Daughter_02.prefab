@@ -3093,7 +3093,6 @@ GameObject:
   - component: {fileID: 8192508900180906609}
   - component: {fileID: 8192508900180906613}
   - component: {fileID: 8192508900180906612}
-  - component: {fileID: 8192508900180906615}
   m_Layer: 0
   m_Name: greatesword
   m_TagString: Untagged
@@ -3164,19 +3163,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8192508900180906615
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8192508900180906608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.5}
-  m_Center: {x: 0.05715067, y: 0.1, z: 1}
 --- !u!1 &8192508900225046762
 GameObject:
   m_ObjectHideFlags: 0

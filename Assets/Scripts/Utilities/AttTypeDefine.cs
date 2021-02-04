@@ -5,13 +5,20 @@ namespace AttTypeDefine
 {
     public delegate void NotifySkill();
 
-
     public enum eSkillBindType
     {
         eEffectWorld,
         eEffectOwner,
+        eDamageOwner,
     }
 
+
+    public enum ePlayerSide
+    {
+        ePlayer,
+        eEnemy,
+        eNPC,
+    }
     public enum eTrigType
     {
         eAuto = 0,

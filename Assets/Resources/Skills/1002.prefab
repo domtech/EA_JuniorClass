@@ -58,12 +58,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrigType: 0
-  Duration: 0.2
+  Duration: 0.15
   EffectSpawnInst: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
   SocketName: Prop_03
   EffectDestroyDelay: 0.2
-  OffSet: {x: 0, y: 0, z: 0}
-  OffRot: {x: 0, y: 0, z: 0}
+  OffSet: {x: 0.6, y: 0, z: 0.6}
+  OffRot: {x: -12, y: 120, z: 11}
 --- !u!1 &6397705122763921712
 GameObject:
   m_ObjectHideFlags: 0

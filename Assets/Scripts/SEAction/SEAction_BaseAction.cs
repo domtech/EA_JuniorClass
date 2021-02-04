@@ -2,13 +2,14 @@ using UnityEngine;
 using AttTypeDefine;
 public class SEAction_BaseAction : MonoBehaviour
 {
+    [HideInInspector]
     public eTrigType TrigType;
+    [HideInInspector]
     public float Duration;
     float StarTime = 0f;
     bool IsTriggered = false;
     void Start()
     {
-
         if(TrigType == eTrigType.eAuto)
         {
             StarTime = Time.time;
@@ -24,7 +25,6 @@ public class SEAction_BaseAction : MonoBehaviour
             IsTriggered = true;
         }
     }
-
 
     // Update is called once per frame
     void Update()
@@ -44,5 +44,4 @@ public class SEAction_BaseAction : MonoBehaviour
     {
 
     }
-
 }

@@ -1,7 +1,14 @@
 using UnityEngine;
-
+using AttTypeDefine;
 public class SEAction_SkillInfo : SEAction_BaseAction
 {
+    [HideInInspector]
+    public eSkillBindType SkillBindType;
+
+    [HideInInspector]
+    public string ObjName;
+
+
     public override void TrigAction()
     {
         Destroy(gameObject);

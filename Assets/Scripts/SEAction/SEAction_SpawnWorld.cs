@@ -3,13 +3,17 @@ using UnityEngine;
 public class SEAction_SpawnWorld : SEAction_BaseAction
 {
     SEAction_DataStore se;
+
+    [HideInInspector]
     public GameObject EffectSpawnInst;
 
+    [HideInInspector]
     public string SocketName;
-
+    [HideInInspector]
     public float EffectDestroyDelay;
-
+    [HideInInspector]
     public Vector3 OffSet;
+    [HideInInspector]
     public Vector3 OffRot;
 
     GameObject Owner;

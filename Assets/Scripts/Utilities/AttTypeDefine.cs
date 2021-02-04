@@ -6,6 +6,12 @@ namespace AttTypeDefine
     public delegate void NotifySkill();
 
 
+    public enum eSkillBindType
+    {
+        eEffectWorld,
+        eEffectOwner,
+    }
+
     public enum eTrigType
     {
         eAuto = 0,

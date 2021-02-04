@@ -58,12 +58,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrigType: 0
-  Duration: 0.15
-  EffectSpawnInst: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
+  Duration: 0.5
+  EffectSpawnInst: {fileID: 1645009922904612, guid: 5e3170c6ef0f014409bd7423e3bb805a, type: 3}
   SocketName: Prop_03
-  EffectDestroyDelay: 0.2
+  EffectDestroyDelay: 0.17
   OffSet: {x: 0, y: 0.2, z: -0.3}
-  OffRot: {x: 0, y: 120, z: 15}
+  OffRot: {x: 90, y: 120, z: 0}
 --- !u!1 &6397705122763921712
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 6148473212643374572}
   - component: {fileID: 537027493375704495}
   m_Layer: 0
-  m_Name: 1002
+  m_Name: 1003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,6 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrigType: 0
-  Duration: 0.5
+  Duration: 1
   SkillBindType: 0
   ObjName: 

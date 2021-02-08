@@ -32,8 +32,9 @@ public class AnimCtrl : BasePlayer
 
     eSkillType SkillType;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         AnimMgr = gameObject.AddComponent<AnimatorManager>();
     }
 

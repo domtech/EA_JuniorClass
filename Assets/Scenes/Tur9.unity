@@ -843,6 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad816b48aee96a443810727a9d724bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerName: Emma
   ClosestHitPoint: {x: 0, y: 0, z: 0}
   AnimPerArray:
   - {x: 0.5, y: 0.57}
@@ -931,7 +932,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339130240}
-  m_LocalRotation: {x: -0.11067676, y: 0.8708039, z: -0.22910655, w: -0.4206679}
+  m_LocalRotation: {x: -0.11067678, y: 0.8708039, z: -0.22910653, w: -0.42066792}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3623,6 +3624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c9a91151ecf7a41941af8b160bd3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerName: Skeleton
   ClosestHitPoint: {x: 0, y: 0, z: 0}
   AnimPerArray: []
   AnimSkillPerArray: []

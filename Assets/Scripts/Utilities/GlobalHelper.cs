@@ -1,5 +1,7 @@
 using System.Text;
 using UnityEngine;
+using BansheeGz.BGDatabase;
+using System.Collections.Generic;
 
 public class GlobalHelper
 {
@@ -42,7 +44,6 @@ public class GlobalHelper
         return null;
     }
 
-
     public static GameObject InstantiateMyPrefab(string path, Vector3 pos, Quaternion rot)
     {
 
@@ -65,6 +66,26 @@ public class GlobalHelper
         sb.Append(b);
         return sb.ToString();
     }
+
+
+    #region table sheets
+
+    public static T GetTheEntityByName<T>(string tableName, string name) where T : BGEntity
+    {
+
+        BGMetaEntity table = BGRepo.I[tableName];
+
+        List<BGEntity> result = table.FindEntities(
+                entity => !string.IsNullOrEmpty(entity.Name) && entity.Name == name) as List<BGEntity>;
+
+        if (result == null || result.Count == 0)
+        {
+            return null;
+        }
+        return result[0] as T;
+    }
+
+    #endregion
 
 
 }

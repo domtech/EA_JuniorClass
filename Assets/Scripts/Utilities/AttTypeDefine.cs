@@ -13,6 +13,15 @@ namespace AttTypeDefine
     }
 
 
+
+    public enum ePlayerAttr
+    {
+        eNULL = -1,
+        eHP = 0,
+        eAttack = 1,
+        eSize = 2,
+    }
+
     public enum StateID { 
         eNULL = -1,
         eGetHit,// ‹…À

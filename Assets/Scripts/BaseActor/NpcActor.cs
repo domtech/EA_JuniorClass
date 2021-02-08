@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class NpcActor : BasePlayer
 {
+
+
     protected override void Start()
     {
         base.Start();

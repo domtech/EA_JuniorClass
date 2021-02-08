@@ -13,6 +13,13 @@ namespace AttTypeDefine
     }
 
 
+    public enum StateID { 
+        eNULL = -1,
+        eGetHit,// ‹…À
+        eFlyAway,//ª˜∑…
+    }
+
+
     public enum ePlayerSide
     {
         ePlayer,

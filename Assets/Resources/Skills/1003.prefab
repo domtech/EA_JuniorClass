@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owner: {fileID: 0}
+  Target: {fileID: 0}
+  SkillInfo: {fileID: 0}
+  BuffInfo: {fileID: 0}
 --- !u!114 &42298886067744875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +96,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6004517305553871085}
+  - {fileID: 7822531892533763410}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,3 +116,114 @@ MonoBehaviour:
   Duration: 1
   SkillBindType: 0
   ObjName: 
+--- !u!1 &6509129170970318181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7822531892533763410}
+  - component: {fileID: 8689599387374018640}
+  - component: {fileID: 7007905363577949371}
+  - component: {fileID: 3641417218523462731}
+  - component: {fileID: 2601521827732004349}
+  - component: {fileID: 6076611274367053223}
+  m_Layer: 0
+  m_Name: DamageOwner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7822531892533763410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509129170970318181}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6148473212643374572}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8689599387374018640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509129170970318181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6552a32c5942ba0428cb512c356da09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Owner: {fileID: 0}
+  Target: {fileID: 0}
+  SkillInfo: {fileID: 0}
+  BuffInfo: {fileID: 0}
+--- !u!65 &7007905363577949371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509129170970318181}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0, z: 1}
+--- !u!114 &3641417218523462731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509129170970318181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ec758366f8bba4aa3aca12f50180a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrigType: 0
+  Duration: 0
+  TrigBuffInst: {fileID: 6076611274367053223}
+  SocketName: Prop_03
+  OffSet: {x: 0, y: 0, z: 0}
+  OffRot: {x: 0, y: 0, z: 0}
+--- !u!114 &2601521827732004349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509129170970318181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2721cdad344d434fb71599f7c84ad2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrigType: 0
+  Duration: 1
+--- !u!114 &6076611274367053223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509129170970318181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb14ed61921a984468982710c497b695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrigType: 1
+  Duration: 0
+  BuffID: 100101

@@ -3,7 +3,6 @@ using AttTypeDefine;
 public class BasePlayer : MonoBehaviour
 {
 
-
     [HideInInspector]
     public Vector3 ClosestHitPoint;
 
@@ -25,4 +24,10 @@ public class BasePlayer : MonoBehaviour
     {
         _Anim = GetComponent<Animator>();
     }
+
+    public void PlayAnim(string animName)
+    {
+        _Anim.SetTrigger(animName);
+    }
+
 }

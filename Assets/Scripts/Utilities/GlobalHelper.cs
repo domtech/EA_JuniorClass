@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 public class GlobalHelper
@@ -57,6 +58,13 @@ public class GlobalHelper
         return go;
     }
 
-   
+    public static string CombingString (string a, string b)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(a);
+        sb.Append(b);
+        return sb.ToString();
+    }
+
 
 }

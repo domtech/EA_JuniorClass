@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3815772086839278223}
   - component: {fileID: 5423782498612505939}
   - component: {fileID: 2040075308410269012}
+  - component: {fileID: 5937639455446787686}
   m_Layer: 0
   m_Name: DamageOwner
   m_TagString: Untagged
@@ -47,7 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owner: {fileID: 0}
+  Target: {fileID: 0}
   SkillInfo: {fileID: 0}
+  BuffInfo: {fileID: 0}
 --- !u!65 &3815772086839278223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrigType: 0
   Duration: 0
+  TrigBuffInst: {fileID: 5937639455446787686}
   SocketName: Prop_03
   OffSet: {x: 0, y: 0, z: 0}
   OffRot: {x: 0, y: 0, z: 0}
@@ -92,6 +96,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrigType: 0
   Duration: 1
+--- !u!114 &5937639455446787686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782243017567842015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb14ed61921a984468982710c497b695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrigType: 0
+  Duration: 0
+  BuffID: 100101
 --- !u!1 &5868772213141404981
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +205,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owner: {fileID: 0}
+  Target: {fileID: 0}
   SkillInfo: {fileID: 0}
+  BuffInfo: {fileID: 0}
 --- !u!114 &1226453177739630839
 MonoBehaviour:
   m_ObjectHideFlags: 0

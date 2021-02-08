@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class SEActionDamage_BindOwner : SEAction_BaseAction
 {
+
+    public SEAction_TrigBuff TrigBuffInst;
+
     [HideInInspector]
     public string SocketName;
 
@@ -108,6 +111,12 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
             var ba = BaList[0];
             BaList.Remove(ba);
             Debug.Log("Success : Trig Buff");
+            var ds = GetDataStore();
+            ds.Target = ba.gameObject;
+
+            //trig buff -> 实例化我们的buff
+            TrigBuffInst.OnStart();
+
         }
 
         //判断是否要开启碰撞器 -> 动画进度
@@ -130,6 +139,8 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
 
     private void OnTriggerEnter(Collider other)
     {
+
+       
         BasePlayer ba = other.gameObject.GetComponent<BasePlayer>();
         if(null == ba)
         {

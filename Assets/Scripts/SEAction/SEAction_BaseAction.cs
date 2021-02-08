@@ -17,7 +17,7 @@ public class SEAction_BaseAction : MonoBehaviour
         }
     }
 
-    public void OnStart ()
+    public virtual void OnStart ()
     {
         if (TrigType == eTrigType.eCondition)
         {

@@ -58,13 +58,7 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
         transform.localPosition = OffSet;
         transform.localRotation = Quaternion.Euler(OffRot);
 
-
-
-
         BC = GetComponent<BoxCollider>();
-
-
-       
 
         Anim = Owner.GetComponent<Animator>();
 

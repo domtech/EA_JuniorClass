@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb14ed61921a984468982710c497b695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrigType: 0
+  TrigType: 1
   Duration: 0
   BuffID: 100101
 --- !u!1 &5868772213141404981

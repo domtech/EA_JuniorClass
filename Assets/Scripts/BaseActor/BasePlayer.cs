@@ -3,6 +3,10 @@ using AttTypeDefine;
 public class BasePlayer : MonoBehaviour
 {
 
+
+    [HideInInspector]
+    public Vector3 ClosestHitPoint;
+
     public Vector2[] AnimPerArray;
     public Vector2[] AnimSkillPerArray;
 

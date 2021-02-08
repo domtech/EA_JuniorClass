@@ -158,6 +158,13 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
                 (bp.PlayerSide == ePlayerSide.ePlayer && ba.PlayerSide == ePlayerSide.eEnemy)
               )
             {
+
+                // var closedtPoint = other.ClosestPoint(other.gameObject.transform.position);
+
+                var dir = (Attacker.transform.position - Defenser.transform.position).normalized;
+
+                var closedtPoint = other.bounds.center + dir* other.bounds.extents.z; //other.ClosestPointOnBounds(other.gameObject.transform.position);
+                Defenser.ClosestHitPoint = closedtPoint;
                 // valid trigger
                 BaList.Add(ba);
             }

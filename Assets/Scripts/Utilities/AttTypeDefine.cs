@@ -18,7 +18,7 @@ namespace AttTypeDefine
         eHP = 0,
         eMaxHP =1, 
         eAttack = 2,
-        eSize = 3,
+        eSize,
     }
 
     public enum eStateID

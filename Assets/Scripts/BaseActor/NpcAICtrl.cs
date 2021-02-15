@@ -1,5 +1,6 @@
 using UnityEngine;
 using AttTypeDefine;
+using DG.Tweening;
 public class NpcAICtrl : MonoBehaviour
 {
 
@@ -14,6 +15,7 @@ public class NpcAICtrl : MonoBehaviour
         {
             if (value == eStateID.eGetHit)
             {
+                Owner.Anim.SetFloat("Speed", 0f);
                 // play injure animation.
                 Owner.Anim.SetTrigger("Base Layer.GetHit");
                 //injure play is over, set state to chase.
@@ -22,6 +24,10 @@ public class NpcAICtrl : MonoBehaviour
             {
                 if(value != npcState)
                 {
+                    if(value != eStateID.eChase)
+                    {
+                        Owner.Anim.SetFloat("Speed", 0f);
+                    }
 
                 }
             }
@@ -33,11 +39,16 @@ public class NpcAICtrl : MonoBehaviour
 
     NpcActor Owner;
 
+    BasePlayer PlayerInst;
+
+    float ChaseDis;
+
     public void OnStart (NpcActor NA)
     {
         Owner = NA;
         IsTrigger = true;
-        NpcState = eStateID.eIdle;
+        PlayerInst = Owner.PlayerInst;
+        NpcState = eStateID.eChase;
     }
 
     
@@ -48,11 +59,29 @@ public class NpcAICtrl : MonoBehaviour
 
         switch(NpcState)
         {
-            case eStateID.eIdle:
+         
+            case eStateID.eChase:
                 {
+                    //判断二者的距离， 如果小于某一个数值，那么就执行攻击操作
+
+                    ChaseDis = Vector3.Distance(transform.position, PlayerInst.transform.position);
+                    if(ChaseDis < (PlayerInst.PlayerRadius + Owner.PlayerRadius) * Owner.BaseAttr.AttackDis)
+                    {
+                        NpcState = eStateID.eAttack;
+                        return;
+                    }
+                    //朝向
+                    transform.DOLookAt(PlayerInst.transform.position, 0.1f);
+
+                    //追击的速度
+
+                    transform.position += transform.forward * Owner.BaseAttr.Speed * Time.deltaTime;
+
+                    //播放追击动画
+                    Owner.Anim.SetFloat("Speed", 1f);
+
                     break;
                 }
-         
         }
     }
 
@@ -72,7 +101,7 @@ public class NpcAICtrl : MonoBehaviour
         {
             case eStateID.eGetHit:
                 {
-                    NpcState = eStateID.eIdle;
+                    NpcState = eStateID.eChase;
                     break;
                 }
         }

@@ -238,6 +238,28 @@ namespace com.dxz.config
 				_f_MAXHP[Index] = value;
 			}
 		}
+		public System.Single f_Speed
+		{
+			get
+			{
+				return _f_Speed[Index];
+			}
+			set
+			{
+				_f_Speed[Index] = value;
+			}
+		}
+		public System.Single f_AttackDis
+		{
+			get
+			{
+				return _f_AttackDis[Index];
+			}
+			set
+			{
+				_f_AttackDis[Index] = value;
+			}
+		}
 		private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_f_name;
 		public static BansheeGz.BGDatabase.BGFieldEntityName _f_name
 		{
@@ -272,6 +294,24 @@ namespace com.dxz.config
 			{
 				if(_ufle12jhs77_f_MAXHP==null || _ufle12jhs77_f_MAXHP.IsDeleted) _ufle12jhs77_f_MAXHP=(BansheeGz.BGDatabase.BGFieldInt) MetaDefault.GetField(new BGId(4652951554992133600,13291954150500539037));
 				return _ufle12jhs77_f_MAXHP;
+			}
+		}
+		private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_f_Speed;
+		public static BansheeGz.BGDatabase.BGFieldFloat _f_Speed
+		{
+			get
+			{
+				if(_ufle12jhs77_f_Speed==null || _ufle12jhs77_f_Speed.IsDeleted) _ufle12jhs77_f_Speed=(BansheeGz.BGDatabase.BGFieldFloat) MetaDefault.GetField(new BGId(4968534119300957770,4328313081753902512));
+				return _ufle12jhs77_f_Speed;
+			}
+		}
+		private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_f_AttackDis;
+		public static BansheeGz.BGDatabase.BGFieldFloat _f_AttackDis
+		{
+			get
+			{
+				if(_ufle12jhs77_f_AttackDis==null || _ufle12jhs77_f_AttackDis.IsDeleted) _ufle12jhs77_f_AttackDis=(BansheeGz.BGDatabase.BGFieldFloat) MetaDefault.GetField(new BGId(5261131599720559700,10360367657616889734));
+				return _ufle12jhs77_f_AttackDis;
 			}
 		}
 		private static readonly BGE_PlayerTemplate.Factory _factory0_PFS = new BGE_PlayerTemplate.Factory();

@@ -886,7 +886,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 173922992}
   CharCtrl: {fileID: 263718047}
-  MoveSpeed: 3
   JoyStick: {fileID: 366755720}
 --- !u!143 &263718047
 CharacterController:
@@ -1020,7 +1019,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339130240}
-  m_LocalRotation: {x: -0.11067676, y: 0.8708039, z: -0.22910655, w: -0.4206679}
+  m_LocalRotation: {x: -0.11067678, y: 0.8708039, z: -0.22910653, w: -0.42066792}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4038,6 +4037,7 @@ MonoBehaviour:
   AnimSkillPerArray: []
   PlayerSide: 1
   NpcHUD: {fileID: 1700292597}
+  PlayerInst: {fileID: 263718048}
 --- !u!1 &2017413816
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,11 @@
 using AttTypeDefine;
+using UnityEngine;
 public class NpcActor : BasePlayer
 {
 
     public UI_HUD NpcHUD;
+
+    public BasePlayer PlayerInst;
 
     NpcAICtrl AICtrl;
 

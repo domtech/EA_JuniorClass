@@ -4,9 +4,9 @@ public class AnimatorManager : MonoBehaviour
 {
 
     NotifySkill SkillReadyInst;
-    AnimCtrl AnimInst;
+    BasePlayer AnimInst;
     StateMachine StateInst;
-    public void OnStart (AnimCtrl animinst)
+    public void OnStart (BasePlayer animinst)
     {
         AnimInst = animinst;
         StateInst = AnimInst.Anim.GetBehaviour<StateMachine>();

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class SEActionDamage_BindOwner : SEAction_BaseAction
 {
-
     public SEAction_TrigBuff TrigBuffInst;
 
     [HideInInspector]
@@ -105,16 +104,13 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
         if (!IsTriggered)
             return;
 
-
-
         if(BaList.Count > 0)
         {
             var ba = BaList[0];
             BaList.Remove(ba);
-          
             var ds = GetDataStore();
             ds.Target = ba.gameObject;
-
+        
             //trig buff -> 实例化我们的buff
             TrigBuffInst.OnStart();
 
@@ -136,16 +132,14 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
         else if (curPer > EndCollidePercent && lastPer <= EndCollidePercent)
         {
             BC.enabled = false;
+            Destroy(gameObject);
         }
 
         lastPer = curPer;
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
-
-       
         BasePlayer ba = other.gameObject.GetComponent<BasePlayer>();
         if(null == ba)
         {
@@ -163,8 +157,9 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
                 (bp.PlayerSide == ePlayerSide.ePlayer && ba.PlayerSide == ePlayerSide.eEnemy)
               )
             {
-
                 // var closedtPoint = other.ClosestPoint(other.gameObject.transform.position);
+             
+         
 
                 var dir = (Attacker.transform.position - Defenser.transform.position).normalized;
 
@@ -172,9 +167,8 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
                 Defenser.ClosestHitPoint = closedtPoint;
                 // valid trigger
                 BaList.Add(ba);
+            
             }
         }
     }
-
-
 }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3713030811454786208}
   - component: {fileID: 3815772086839278223}
   - component: {fileID: 5423782498612505939}
-  - component: {fileID: 2040075308410269012}
   - component: {fileID: 5937639455446787686}
   m_Layer: 0
   m_Name: DamageOwner
@@ -82,20 +81,6 @@ MonoBehaviour:
   SocketName: Prop_03
   OffSet: {x: 0, y: 0, z: 0}
   OffRot: {x: 0, y: 0, z: 0}
---- !u!114 &2040075308410269012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782243017567842015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2721cdad344d434fb71599f7c84ad2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrigType: 0
-  Duration: 1
 --- !u!114 &5937639455446787686
 MonoBehaviour:
   m_ObjectHideFlags: 0

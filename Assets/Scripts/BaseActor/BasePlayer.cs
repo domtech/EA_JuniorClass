@@ -6,8 +6,8 @@ public class BasePlayer : MonoBehaviour
     private float playerraidus;
     public float PlayerRadius => (playerraidus);
 
-
-
+    protected AnimatorManager AnimMgr;
+ 
     private CharacterController characterCtrl;
 
     public CharacterController CharacCtrl => (characterCtrl);
@@ -42,6 +42,8 @@ public class BasePlayer : MonoBehaviour
         _BaseAttr = gameObject.AddComponent<BaseAttributes>();
 
         characterCtrl = GetComponent<CharacterController>();
+
+        AnimMgr = gameObject.AddComponent<AnimatorManager>();
     }
 
     // Start is called before the first frame update

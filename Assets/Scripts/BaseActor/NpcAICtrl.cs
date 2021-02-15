@@ -29,10 +29,31 @@ public class NpcAICtrl : MonoBehaviour
                         Owner.Anim.SetFloat("Speed", 0f);
                     }
 
+                    switch(value) {
+                        case eStateID.eAttack:
+                            {
+                                AnimMgr.StartAnimation("Base Layer.Attack1", null, CastSkillBegin, CastSkillEnd, null);
+                                break;
+                            }
+                    }
                 }
             }
             npcState = value;
         }
+    }
+
+    void CastSkillBegin()
+    {
+       
+    }
+
+    void CastSkillEnd()
+    {
+  
+        if (NpcState == eStateID.eGetHit)
+            return;
+
+        NpcState = eStateID.eChase;
     }
 
     bool IsTrigger = false;
@@ -43,12 +64,16 @@ public class NpcAICtrl : MonoBehaviour
 
     float ChaseDis;
 
+    AnimatorManager AnimMgr;
+
     public void OnStart (NpcActor NA)
     {
         Owner = NA;
         IsTrigger = true;
         PlayerInst = Owner.PlayerInst;
         NpcState = eStateID.eChase;
+        AnimMgr = gameObject.GetComponent<AnimatorManager>();
+        AnimMgr.OnStart(Owner);
     }
 
     

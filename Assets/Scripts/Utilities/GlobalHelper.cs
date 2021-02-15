@@ -67,6 +67,26 @@ public class GlobalHelper
         return sb.ToString();
     }
 
+    public static Transform GetNearestTrans(List<Transform> list, Transform target)
+    {
+        if (list.Count == 0 || target == null)
+            return null;
+
+        float MinDis = float.MaxValue;
+        int TargetIndex = 0;
+        for(var i = 0; i < list.Count; i++)
+        {
+            var dis = Vector3.Distance(list[i].position, target.position);
+            if(dis < MinDis)
+            {
+                MinDis = dis;
+                TargetIndex = i;
+            }
+        }
+
+        return list[TargetIndex];
+    }
+
 
     #region table sheets
 

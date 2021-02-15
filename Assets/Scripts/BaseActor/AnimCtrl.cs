@@ -2,11 +2,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using AttTypeDefine;
 using DG.Tweening;
+using System.Collections.Generic;
+
 public class AnimCtrl : BasePlayer
 {
 
     #region Sys Funcs
 
+    List<Transform> EnemyList;
 
     public UI_JoyStick JoyStickInst;
 
@@ -36,6 +39,7 @@ public class AnimCtrl : BasePlayer
     {
         base.Awake();
         AnimMgr = gameObject.AddComponent<AnimatorManager>();
+        EnemyList = new List<Transform>();
     }
 
     protected override void Start()
@@ -68,6 +72,29 @@ public class AnimCtrl : BasePlayer
     {
         UpdateSkillInput();
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var bp = other.gameObject.GetComponent<BasePlayer>();
+        if (null == bp || bp.PlayerSide == ePlayerSide.ePlayer)
+            return;
+
+        EnemyList.Add(bp.transform);
+      
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        var bp = other.gameObject.GetComponent<BasePlayer>();
+        if (null == bp)
+            return;
+
+        EnemyList.Remove(bp.transform);
+       
+    }
+
+
     #endregion
 
     #region Cast Attack
@@ -123,6 +150,16 @@ public class AnimCtrl : BasePlayer
         {
             IsReady = false;
 
+
+            //面朝敌人
+            var Target = GlobalHelper.GetNearestTrans(EnemyList, transform);
+            if(null != Target)
+            {
+                //var toward = (Target.position - transform.position).normalized;
+                //toward.y = 0f;
+                transform.DOLookAt(Target.position, 0.1f);
+            }
+
             //加载特效
 
             // 规则制定 ： 你的动画如何和你的特效绑定在一起， 我怎么知道播放a动画，就去加载a特效呢？
@@ -135,6 +172,9 @@ public class AnimCtrl : BasePlayer
             SkillInfo.SetOwner(gameObject);
 
             _CurAnimAttackIndex++;
+
+            
+
 
         }
 
@@ -287,4 +327,15 @@ public class AnimCtrl : BasePlayer
 
     }
     #endregion
+
+    #region Enemy Die
+    public void EnemyDie(Transform enemy)
+    {
+        if(EnemyList.Contains(enemy))
+        {
+            EnemyList.Remove(enemy);
+        }
+    }
+    #endregion
+
 }

@@ -110,7 +110,7 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
         {
             var ba = BaList[0];
             BaList.Remove(ba);
-            Debug.Log("Success : Trig Buff");
+          
             var ds = GetDataStore();
             ds.Target = ba.gameObject;
 

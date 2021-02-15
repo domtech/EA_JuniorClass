@@ -77,7 +77,7 @@ public class EmmaKnife : MonoBehaviour
             enemyActor.GetHit();
 
             //player increase angry value;
-            AnimCtrlInst.OnModifyFSV(25);
+            //AnimCtrlInst.OnModifyFSV(25);
         }
 
 

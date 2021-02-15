@@ -31,6 +31,12 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
         var attack = attacker.BaseAttr[ePlayerAttr.eAttack];
 
 
+        if(attacker.PlayerSide == ePlayerSide.ePlayer)
+        {
+            ((AnimCtrl)attacker).OnModifyFSV(25);
+        }
+
+
         hp -= attack;
 
         if (hp <= 0)
@@ -38,6 +44,7 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
             defencer.BaseAttr[ePlayerAttr.eHP] = 0;
 
             defencer.PlayAnim("Base Layer.Die");
+            ((AnimCtrl)attacker).EnemyDie(defencer.transform);
         }
         else
         {

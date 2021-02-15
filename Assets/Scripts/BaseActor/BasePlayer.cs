@@ -4,6 +4,12 @@ public class BasePlayer : MonoBehaviour
 {
 
 
+    private CharacterController characterCtrl;
+
+    public CharacterController CharacCtrl => (characterCtrl);
+
+    public float PlayerHeight => (characterCtrl.height);
+
     public string PlayerName;
     //hp, attack
 
@@ -30,13 +36,15 @@ public class BasePlayer : MonoBehaviour
     protected virtual void Awake()
     {
         _BaseAttr = gameObject.AddComponent<BaseAttributes>();
+
+        characterCtrl = GetComponent<CharacterController>();
     }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
         _Anim = GetComponent<Animator>();
-        _BaseAttr.InitPlayerAttr(PlayerName);
+        _BaseAttr.InitPlayerAttr(this, PlayerName);
     }
 
     public void PlayAnim(string animName)

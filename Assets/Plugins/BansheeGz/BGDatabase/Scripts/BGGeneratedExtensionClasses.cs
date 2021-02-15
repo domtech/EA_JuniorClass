@@ -227,6 +227,17 @@ namespace com.dxz.config
 				_f_HP[Index] = value;
 			}
 		}
+		public System.Int32 f_MAXHP
+		{
+			get
+			{
+				return _f_MAXHP[Index];
+			}
+			set
+			{
+				_f_MAXHP[Index] = value;
+			}
+		}
 		private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_f_name;
 		public static BansheeGz.BGDatabase.BGFieldEntityName _f_name
 		{
@@ -252,6 +263,15 @@ namespace com.dxz.config
 			{
 				if(_ufle12jhs77_f_HP==null || _ufle12jhs77_f_HP.IsDeleted) _ufle12jhs77_f_HP=(BansheeGz.BGDatabase.BGFieldInt) MetaDefault.GetField(new BGId(4701389701986966800,15189976730249900423));
 				return _ufle12jhs77_f_HP;
+			}
+		}
+		private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_f_MAXHP;
+		public static BansheeGz.BGDatabase.BGFieldInt _f_MAXHP
+		{
+			get
+			{
+				if(_ufle12jhs77_f_MAXHP==null || _ufle12jhs77_f_MAXHP.IsDeleted) _ufle12jhs77_f_MAXHP=(BansheeGz.BGDatabase.BGFieldInt) MetaDefault.GetField(new BGId(4652951554992133600,13291954150500539037));
+				return _ufle12jhs77_f_MAXHP;
 			}
 		}
 		private static readonly BGE_PlayerTemplate.Factory _factory0_PFS = new BGE_PlayerTemplate.Factory();

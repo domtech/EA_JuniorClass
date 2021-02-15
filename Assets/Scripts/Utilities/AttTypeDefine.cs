@@ -18,8 +18,9 @@ namespace AttTypeDefine
     {
         eNULL = -1,
         eHP = 0,
-        eAttack = 1,
-        eSize = 2,
+        eMaxHP =1, 
+        eAttack = 2,
+        eSize = 3,
     }
 
     public enum StateID { 

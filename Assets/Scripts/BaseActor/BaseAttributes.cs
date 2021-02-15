@@ -12,6 +12,8 @@ public class BaseAttributes : MonoBehaviour
 
     BGE_PlayerAttTemplate PlayerAttTpl;
 
+    BasePlayer Owner;
+
     void Awake()
     {
         attrs = new int[(int)ePlayerAttr.eSize];
@@ -34,14 +36,18 @@ public class BaseAttributes : MonoBehaviour
 
 
     //初始化角色的基础信息
-    public void InitPlayerAttr (string Name)
+    public void InitPlayerAttr (BasePlayer bp, string Name)
     {
       
         PlayerTpl = GlobalHelper.GetTheEntityByName<BGE_PlayerTemplate>("PlayerTemplate", Name);
         PlayerAttTpl = GlobalHelper.GetTheEntityByName<BGE_PlayerAttTemplate > ("PlayerAttTemplate", Name);
 
+        Owner = bp;
+
+        this[ePlayerAttr.eMaxHP] = PlayerAttTpl.f_MAXHP;
         this[ePlayerAttr.eAttack] = PlayerAttTpl.f_Attack;
         this[ePlayerAttr.eHP] = PlayerAttTpl.f_HP;
+      
     }
 
 
@@ -70,7 +76,29 @@ public class BaseAttributes : MonoBehaviour
 
             if (value != attrs[(int)att])
             {
-                attrs[(int)att] = value;
+               
+                if (att == ePlayerAttr.eHP && Owner.PlayerSide == ePlayerSide.eEnemy)
+                {
+                    if (attrs[(int)att] == 0 && value == this[ePlayerAttr.eMaxHP])
+                    {
+                        attrs[(int)att] = value;
+                        return;
+                    }
+
+                    attrs[(int)att] = value;
+                    //update player hp ui
+
+                    float cur = (float)attrs[(int)att];
+
+                    float hpPer = cur / this[ePlayerAttr.eMaxHP];
+                    ((NpcActor)Owner).UpdateHp(hpPer);
+                }
+                else
+                {
+                    attrs[(int)att] = value;
+                }
+
+                
             }
         }
     }

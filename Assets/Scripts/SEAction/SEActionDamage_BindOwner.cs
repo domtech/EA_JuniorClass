@@ -106,6 +106,7 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
             return;
 
 
+
         if(BaList.Count > 0)
         {
             var ba = BaList[0];
@@ -118,6 +119,10 @@ public class SEActionDamage_BindOwner : SEAction_BaseAction
             TrigBuffInst.OnStart();
 
         }
+
+        if (Anim.IsInTransition(0))
+            return;
+
 
         //判断是否要开启碰撞器 -> 动画进度
         ASI = Anim.GetCurrentAnimatorStateInfo(0);

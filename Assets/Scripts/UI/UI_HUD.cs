@@ -7,7 +7,6 @@ public class UI_HUD : MonoBehaviour
 
     public Slider HPSlider;
 
-
     Camera Cam;
 
     public float Duration;

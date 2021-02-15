@@ -5,7 +5,7 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
     
 
     [HideInInspector]
-    public StateID AnimID;
+    public eStateID AnimID;
 
 
     /*
@@ -43,8 +43,12 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
         {
             defencer.BaseAttr[ePlayerAttr.eHP] = 0;
 
-            defencer.PlayAnim("Base Layer.Die");
-            ((AnimCtrl)attacker).EnemyDie(defencer.transform);
+            if (defencer.PlayerSide == ePlayerSide.eEnemy)
+            {
+                ((NpcActor)defencer).SetAIState(eStateID.eDie);
+                ((AnimCtrl)attacker).EnemyDie(defencer.transform);
+            }
+           
         }
         else
         {
@@ -54,13 +58,22 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
             //play injure animation.
             switch (AnimID)
             {
-                case StateID.eGetHit:
+                case eStateID.eGetHit:
                     {
-                        defencer.PlayAnim("Base Layer.GetHit");
+
+                        if(defencer.PlayerSide == ePlayerSide.eEnemy)
+                        {
+                            ((NpcActor)defencer).SetAIState(eStateID.eGetHit);
+                        }
+
                         break;
                     }
-                case StateID.eFlyAway:
+                case eStateID.eFlyAway:
                     {
+                        if (defencer.PlayerSide == ePlayerSide.eEnemy)
+                        {
+
+                        }
                         break;
                     }
             }

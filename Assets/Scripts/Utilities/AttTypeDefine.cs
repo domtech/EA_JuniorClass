@@ -12,8 +12,6 @@ namespace AttTypeDefine
         eDamageOwner,
     }
 
-
-
     public enum ePlayerAttr
     {
         eNULL = -1,
@@ -23,10 +21,15 @@ namespace AttTypeDefine
         eSize = 3,
     }
 
-    public enum StateID { 
+    public enum eStateID
+    { 
         eNULL = -1,
-        eGetHit,//ÊÜÉË
-        eFlyAway,//»÷·É
+        eIdle = 0,
+        eChase = 1,
+        eAttack = 2,
+        eGetHit = 3,
+        eFlyAway = 4,//»÷·É
+        eDie = 5,
     }
 
 

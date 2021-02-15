@@ -9,7 +9,7 @@ public class SEAction_BuffTakeDamageEditor : SEAction_BaseActionEditor
 
 
 
-    string[] injureAnimNames = new string[] { "ÊÜÉË", "»÷·É" };
+    string[] injureAnimNames = new string[] { "´ý»ú", "×·»÷", "¹¥»÷", "ÊÜÉË", "»÷·É", "ËÀÍö" };
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class SEAction_BuffTakeDamageEditor : SEAction_BaseActionEditor
         int condition = EditorGUILayout.Popup((int)Owner.AnimID, injureAnimNames);
         if (condition != (int)Owner.AnimID)
         {
-            Owner.AnimID = (StateID)condition;
+            Owner.AnimID = (eStateID)condition;
             EditorUtility.SetDirty(Owner.gameObject);
         }
         EditorGUILayout.EndHorizontal();

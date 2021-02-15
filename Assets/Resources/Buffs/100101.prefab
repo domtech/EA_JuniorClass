@@ -126,4 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrigType: 0
   Duration: 0
-  AnimID: 0
+  AnimID: 3

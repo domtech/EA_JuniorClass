@@ -47,9 +47,6 @@ public class BasePlayer : MonoBehaviour
         _BaseAttr.InitPlayerAttr(this, PlayerName);
     }
 
-    public void PlayAnim(string animName)
-    {
-        _Anim.SetTrigger(animName);
-    }
+   
 
 }

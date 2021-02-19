@@ -2,6 +2,7 @@ using UnityEngine;
 using AttTypeDefine;
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Collections;
 
 public class NpcAICtrl : MonoBehaviour
 {
@@ -19,6 +20,15 @@ public class NpcAICtrl : MonoBehaviour
                 Owner.Anim.SetFloat("Speed", 0f);
                 // play injure animation.
                 Owner.Anim.SetTrigger("Base Layer.GetHit");
+
+                Owner.transform.LookAt(PlayerInst.transform);
+
+                var tmp = Owner.transform.forward;
+
+                tmp.y = 0f;
+
+                Owner.transform.forward = tmp;
+
                 //injure play is over, set state to chase.
             }
             else
@@ -43,7 +53,8 @@ public class NpcAICtrl : MonoBehaviour
                             }
                         case eStateID.eWalkBack:
                             {
-                                Owner.Anim.SetTrigger("Base Layer.Taunting");
+                                Owner.Anim.SetTrigger("Base Layer.WalkBack");
+                                walkbackStartTime = Time.time;
                                 break;
                             }
                     }
@@ -65,9 +76,6 @@ public class NpcAICtrl : MonoBehaviour
             return;
 
         NpcState = GetCurNpcAIState(eStateID.eAttack);
-
-        Debug.Log(NpcState);
-
     }
 
     bool IsTrigger = false;
@@ -131,6 +139,33 @@ public class NpcAICtrl : MonoBehaviour
 
     #endregion
 
+    #region walkback
+    public float walkbackSpeed = 1f;
+    public float walkbackDuration = 2f;
+    public float walkbackStartTime;
+    void UpdateWalkBack()
+    {
+        if(Time.time - walkbackStartTime >= walkbackDuration)
+        {
+            NpcState = eStateID.eChase;
+            Owner.Anim.SetTrigger("Base Layer.Run");
+            return;
+        }
+        else
+        {
+            transform.DOLookAt(PlayerInst.transform.position, 0.2f);
+
+            var tmp = transform.forward;
+            tmp.y = 0f;
+            transform.forward = tmp;
+            
+
+            transform.position += (-1f) * walkbackSpeed * Time.deltaTime * transform.forward;
+        }
+    }
+
+    #endregion
+
     private void Update()
     {
         if (!IsTrigger)
@@ -160,6 +195,11 @@ public class NpcAICtrl : MonoBehaviour
 
                     break;
                 }
+            case eStateID.eWalkBack:
+                {
+                    UpdateWalkBack();
+                    break;
+                }
         }
     }
 
@@ -169,11 +209,11 @@ public class NpcAICtrl : MonoBehaviour
 
     public int AttackWalkback = 50;
 
-    public int GetHitTauntPer = 40;
+    public int GetHitTauntPer = 1;
 
-    public int GetHitChase = 10;
+    public int GetHitChase = 15;
 
-    public int GetHitWalkback = 50;
+    public int GetHitWalkback = 84;
 
     eStateID GetCurNpcAIState(eStateID id)
     {
@@ -232,7 +272,8 @@ public class NpcAICtrl : MonoBehaviour
         {
             case eStateID.eGetHit:
                 {
-                    NpcState = GetCurNpcAIState(eStateID.eGetHit);
+                    StartCoroutine(WaitForAWhile());
+                   
                     break;
                 }
             case eStateID.eTaunting:
@@ -242,4 +283,12 @@ public class NpcAICtrl : MonoBehaviour
                 }
         }
     }
+
+    IEnumerator WaitForAWhile()
+    {
+        yield return new WaitForSeconds(0.5f);
+        NpcState = GetCurNpcAIState(eStateID.eGetHit);
+    }
+    
+
 }

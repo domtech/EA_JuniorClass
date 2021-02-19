@@ -6,9 +6,7 @@ using System.Collections.Generic;
 
 public class AnimCtrl : BasePlayer
 {
-
     #region Sys Funcs
-
     List<Transform> EnemyList;
 
     public UI_JoyStick JoyStickInst;
@@ -27,8 +25,6 @@ public class AnimCtrl : BasePlayer
     bool IsReady = true;
 
     Camera Cam;
-
-    //EmmaKnife WeaponInst;
 
     bool _IsPlaying;
     public bool IsPlaying =>(_IsPlaying);
@@ -73,7 +69,6 @@ public class AnimCtrl : BasePlayer
         UpdateSkillInput();
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         var bp = other.gameObject.GetComponent<BasePlayer>();
@@ -93,12 +88,9 @@ public class AnimCtrl : BasePlayer
         EnemyList.Remove(bp.transform);
        
     }
-
-
     #endregion
 
     #region Cast Attack
-
     void UpdateSkillInput()
     {
 #if UNITY_EDITOR
@@ -131,10 +123,8 @@ public class AnimCtrl : BasePlayer
             CurAnimName = AttackPre + _CurAnimAttackIndex.ToString();
         }
 
-      
         AnimMgr.StartAnimation(CurAnimName, CastSkillReady, CastSkillBegin, CastSkillEnd, CastSkillEnd1);
     }
-
 
     void CastSkillReady()
     {
@@ -195,6 +185,12 @@ public class AnimCtrl : BasePlayer
         else if(SkillType == eSkillType.eSkill1)
         {
           
+        }
+
+        var state = Anim.GetCurrentAnimatorStateInfo(0);
+        if(state.IsName("Base Layer.GetHit"))
+        {
+            Debug.Log("1");
         }
         _IsPlaying = false;
     }
@@ -315,6 +311,16 @@ public class AnimCtrl : BasePlayer
             EnemyList.Remove(enemy);
         }
     }
+    #endregion
+
+    #region Player GetHit
+    public void PlayerGetHit()
+    {
+        IsReady = true;
+        _IsPlaying = true;
+        Anim.SetTrigger("Base Layer.GetHit");
+    }
+
     #endregion
 
 }

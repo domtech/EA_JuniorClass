@@ -20,6 +20,7 @@ public class NpcActor : BasePlayer
     protected override void Start()
     {
         base.Start();
+        TypeId = 2000;
         AICtrl.OnStart(this);
     }
 

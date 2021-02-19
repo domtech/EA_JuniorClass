@@ -7,6 +7,8 @@ using System.Collections;
 public class NpcAICtrl : MonoBehaviour
 {
     eStateID npcState = eStateID.eNULL;
+
+    string SkillPrePath = "Skills/";
     public eStateID NpcState
     {
         get
@@ -45,6 +47,9 @@ public class NpcAICtrl : MonoBehaviour
                         case eStateID.eAttack:
                             {
                                 AnimMgr.StartAnimation("Base Layer.Attack1", null, CastSkillBegin, CastSkillEnd, null);
+
+                                //加载技能
+
                                 break;
                             }
                         case eStateID.eTaunting:
@@ -89,7 +94,21 @@ public class NpcAICtrl : MonoBehaviour
 
     void CastSkillBegin()
     {
-       
+        //面朝敌人
+        var Target = PlayerInst.transform;
+        if (null != Target)
+        {
+            //var toward = (Target.position - transform.position).normalized;
+            //toward.y = 0f;
+            transform.DOLookAt(Target.position, 0.1f);
+        }
+
+        var path = SkillPrePath + "2001";
+        var SkillPrefab = GlobalHelper.InstantiateMyPrefab(path, transform.position + Vector3.up * 1f, Quaternion.identity);
+
+        var SkillInfo = SkillPrefab.GetComponent<SEAction_SkillInfo>();
+        SkillInfo.SetOwner(gameObject);
+
     }
 
     void CastSkillEnd()

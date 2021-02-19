@@ -39,6 +39,7 @@ public class NpcAICtrl : MonoBehaviour
                     {
                         Owner.Anim.SetFloat("Speed", 0f);
                     }
+                   
 
                     switch(value) {
                         case eStateID.eAttack:
@@ -55,6 +56,26 @@ public class NpcAICtrl : MonoBehaviour
                             {
                                 Owner.Anim.SetTrigger("Base Layer.WalkBack");
                                 walkbackStartTime = Time.time;
+                                break;
+                            }
+                        case eStateID.eFlyAway:
+                            {
+                                Owner.Anim.SetTrigger("Base Layer.HitBack");
+
+                                //Î»ÒÆ
+                                var finalPos = Owner.transform.position + Quaternion.AngleAxis(180f, Vector3.up) * Owner.transform.forward * hitBackDis;
+
+                                GlobalHelper.TransLookAt2D(Owner.transform, PlayerInst.transform);
+
+                                //Owner.transform.LookAt(PlayerInst.transform);
+                                //var tmp = Owner.transform.forward;
+                                //tmp.y = 0f;
+                                //Owner.transform.forward = tmp;
+                                
+                                Owner.transform.DOMove(finalPos, hitBackDuration).OnComplete(()=> {
+                                    NpcState = eStateID.eChase;
+                                    Owner.Anim.SetTrigger("Base Layer.Run");
+                                });
                                 break;
                             }
                     }
@@ -165,6 +186,12 @@ public class NpcAICtrl : MonoBehaviour
     }
 
     #endregion
+
+    #region hit back
+    public float hitBackDuration = 0.25f;
+    public float hitBackDis = 2.5f;
+    #endregion
+
 
     private void Update()
     {

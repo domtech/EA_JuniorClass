@@ -182,27 +182,6 @@ public class AnimCtrl : BasePlayer
 
     void CastSkillEnd1()
     {
-
-        //Vector2 Item = Vector2.zero;
-            
-
-        //if (SkillType == eSkillType.eAttack)
-        //{
-        //    if (_CurAnimAttackIndex <= 1)
-        //    {
-        //        Debug.LogError("Logic Error");
-        //        return;
-        //    }
-
-        //    Item = AnimPerArray[_CurAnimAttackIndex - 2];
-        //}
-        //else if(SkillType == eSkillType.eSkill1)
-        //{
-        //    Item = AnimSkillPerArray[(int)(SkillType - 1)];
-        //}
-
-        //WeaponInst.OnStartWeaponCtrl(Anim, Item.x, Item.y);
-
     }
 
     void CastSkillEnd()

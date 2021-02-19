@@ -66,16 +66,18 @@ public class NpcAICtrl : MonoBehaviour
                                 var finalPos = Owner.transform.position + Quaternion.AngleAxis(180f, Vector3.up) * Owner.transform.forward * hitBackDis;
 
                                 GlobalHelper.TransLookAt2D(Owner.transform, PlayerInst.transform);
-
-                                //Owner.transform.LookAt(PlayerInst.transform);
-                                //var tmp = Owner.transform.forward;
-                                //tmp.y = 0f;
-                                //Owner.transform.forward = tmp;
-                                
                                 Owner.transform.DOMove(finalPos, hitBackDuration).OnComplete(()=> {
                                     NpcState = eStateID.eChase;
                                     Owner.Anim.SetTrigger("Base Layer.Run");
                                 });
+                                break;
+                            }
+                        case eStateID.eDie:
+                            {
+                                //关闭碰撞器,不在接收碰撞
+                                Owner.Anim.SetTrigger("Base Layer.Die");
+                                //角色播放完死亡动画，进行下沉
+                                Owner.CharacCtrl.enabled = false;
                                 break;
                             }
                     }
@@ -306,6 +308,14 @@ public class NpcAICtrl : MonoBehaviour
             case eStateID.eTaunting:
                 {
                     NpcState = eStateID.eChase;
+                    break;
+                }
+            case eStateID.eDie:
+                {
+                    //下沉逻辑 : 在指定的时间内，Y轴位移指定的高度
+                    Owner.transform.DOMoveY(-0.5f, 6f).OnComplete(()=> {
+                        Destroy(gameObject);
+                    });
                     break;
                 }
         }

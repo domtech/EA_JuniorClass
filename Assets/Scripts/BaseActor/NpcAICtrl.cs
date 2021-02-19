@@ -1,9 +1,10 @@
 using UnityEngine;
 using AttTypeDefine;
 using DG.Tweening;
+using System.Collections.Generic;
+
 public class NpcAICtrl : MonoBehaviour
 {
-
     eStateID npcState = eStateID.eNULL;
     public eStateID NpcState
     {
@@ -35,6 +36,16 @@ public class NpcAICtrl : MonoBehaviour
                                 AnimMgr.StartAnimation("Base Layer.Attack1", null, CastSkillBegin, CastSkillEnd, null);
                                 break;
                             }
+                        case eStateID.eTaunting:
+                            {
+                                Owner.Anim.SetTrigger("Base Layer.Taunting");
+                                break;
+                            }
+                        case eStateID.eWalkBack:
+                            {
+                                Owner.Anim.SetTrigger("Base Layer.Taunting");
+                                break;
+                            }
                     }
                 }
             }
@@ -53,7 +64,10 @@ public class NpcAICtrl : MonoBehaviour
         if (NpcState == eStateID.eGetHit)
             return;
 
-        NpcState = eStateID.eChase;
+        NpcState = GetCurNpcAIState(eStateID.eAttack);
+
+        Debug.Log(NpcState);
+
     }
 
     bool IsTrigger = false;
@@ -74,9 +88,49 @@ public class NpcAICtrl : MonoBehaviour
         NpcState = eStateID.eChase;
         AnimMgr = gameObject.GetComponent<AnimatorManager>();
         AnimMgr.OnStart(Owner);
+        InitPercentage(out dicAttackPercent, out listAttackPercent, AttackTauntPer, AttackChase, AttackWalkback);
+        InitPercentage(out dicGethitPercent, out listGethitPercent, GetHitTauntPer, GetHitChase, GetHitWalkback);
     }
 
-    
+    #region percentage calculation
+    Dictionary<int, eStateID> dicAttackPercent;
+    List<int> listAttackPercent;
+    Dictionary<int, eStateID> dicGethitPercent;
+    List<int> listGethitPercent;
+    void InitPercentage(out Dictionary<int, eStateID> dic, out List<int> list,  int taunt, int chase, int walkback)
+    {
+        dic = new Dictionary<int, eStateID>();
+        dic[taunt] = eStateID.eTaunting;
+        dic[chase] = eStateID.eChase;
+        dic[walkback] = eStateID.eWalkBack;
+
+        var array = list = new List<int>();
+
+        array.Add(taunt);
+        array.Add(chase);
+        array.Add(walkback);
+
+        GlobalHelper.QuickSortStrict(array);
+       
+
+        var tmp = dic[array[2]];
+        dic.Remove(array[2]);
+        dic.Add(100, tmp);
+     
+
+        tmp = dic[array[1]];
+        dic.Remove(array[1]);
+        dic.Add(array[0] + array[1], tmp);
+        
+
+        array[2] = 100;
+        array[1] = array[0] + array[1];
+       
+
+    }
+
+    #endregion
+
     private void Update()
     {
         if (!IsTrigger)
@@ -84,7 +138,6 @@ public class NpcAICtrl : MonoBehaviour
 
         switch(NpcState)
         {
-         
             case eStateID.eChase:
                 {
                     //判断二者的距离， 如果小于某一个数值，那么就执行攻击操作
@@ -110,13 +163,66 @@ public class NpcAICtrl : MonoBehaviour
         }
     }
 
+    public int AttackTauntPer = 40;
 
+    public int AttackChase = 10;
+
+    public int AttackWalkback = 50;
+
+    public int GetHitTauntPer = 40;
+
+    public int GetHitChase = 10;
+
+    public int GetHitWalkback = 50;
+
+    eStateID GetCurNpcAIState(eStateID id)
+    {
+
+        var percentage = Random.Range(0, 100);
+        Dictionary<int, eStateID> dicPer;
+        List<int> listPer;
+        switch (id)
+        {
+            case eStateID.eAttack:
+                {
+                    dicPer = dicAttackPercent;
+                    listPer = listAttackPercent;
+                    break;
+                }
+            case eStateID.eGetHit:
+                {
+                    dicPer = dicGethitPercent;
+                    listPer = listGethitPercent;
+                    break;
+                }
+            default:
+                {
+                    return eStateID.eNULL;
+                }
+        }
+
+        if (percentage < listPer[0])
+        {
+            return dicPer[listPer[0]];
+        }
+        else if (percentage >= listPer[0] && percentage < listPer[1])
+        {
+            return dicPer[listPer[1]];
+        }
+        else
+        {
+            return dicPer[listPer[2]];
+        }
+
+
+
+        return eStateID.eNULL;
+    }
 
     void EventAnimBegin()
     {
 
     }
-
 
     void EventAnimEnd(int id)
     {
@@ -126,12 +232,14 @@ public class NpcAICtrl : MonoBehaviour
         {
             case eStateID.eGetHit:
                 {
+                    NpcState = GetCurNpcAIState(eStateID.eGetHit);
+                    break;
+                }
+            case eStateID.eTaunting:
+                {
                     NpcState = eStateID.eChase;
                     break;
                 }
         }
     }
-
-
-
 }

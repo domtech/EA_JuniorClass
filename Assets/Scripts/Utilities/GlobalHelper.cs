@@ -107,5 +107,39 @@ public class GlobalHelper
 
     #endregion
 
+    #region ≈≈–ÚÀ„∑®
+    //quick sort
+    public static void QuickSortStrict(List<int> data)
+    {
+        QuickSortStrict(data, 0, data.Count - 1);
+    }
+
+    public static void QuickSortStrict(List<int> data, int low, int high)
+    {
+        if (low >= high) return;
+        int temp = data[low];
+        int i = low + 1, j = high;
+        while (true)
+        {
+            while (data[j] > temp) j--;
+            while (data[i] < temp && i < j) i++;
+            if (i >= j) break;
+            Swap(data, i, j);
+            i++; j--;
+        }
+        if (j != low)
+            Swap(data, low, j);
+        QuickSortStrict(data, j + 1, high);
+        QuickSortStrict(data, low, j - 1);
+    }
+
+    private static void Swap(List<int> data, int low, int high)
+    {
+        var tmp = data[low];
+        data[low] = data[high];
+        data[high] = tmp;
+    }
+    #endregion
+
 
 }

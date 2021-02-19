@@ -30,6 +30,8 @@ namespace AttTypeDefine
         eGetHit = 3,
         eFlyAway = 4,//»÷·É
         eDie = 5,
+        eTaunting = 6,//³°Ð¦
+        eWalkBack = 7,//ºóÍË
     }
 
 

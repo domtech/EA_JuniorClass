@@ -9,7 +9,7 @@ public class SEAction_BuffTakeDamageEditor : SEAction_BaseActionEditor
 
 
 
-    string[] injureAnimNames = new string[] { "´ı»ú", "×·»÷", "¹¥»÷", "ÊÜÉË", "»÷·É", "ËÀÍö" };
+    string[] injureAnimNames = new string[] { "´ı»ú", "×·»÷", "¹¥»÷", "ÊÜÉË", "»÷·É", "ËÀÍö","³°Ğ¦","ºóÍË" };
 
     private void Awake()
     {

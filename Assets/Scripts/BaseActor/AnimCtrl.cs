@@ -31,6 +31,8 @@ public class AnimCtrl : BasePlayer
 
     eSkillType SkillType;
 
+
+    SEAction_SkillInfo SkillInfo;
     protected override void Awake()
     {
         base.Awake();
@@ -104,7 +106,7 @@ public class AnimCtrl : BasePlayer
     void CastSkill(eSkillType type)
     {
 
-        if (!IsReady)
+        if (!IsReady || IsGetHit)
             return;
 
         SkillType = type;
@@ -158,14 +160,10 @@ public class AnimCtrl : BasePlayer
             var path = SkillPrePath + (1000 + _CurAnimAttackIndex).ToString();
             var SkillPrefab = GlobalHelper.InstantiateMyPrefab(path, transform.position + Vector3.up * 1f, Quaternion.identity);
 
-            var SkillInfo = SkillPrefab.GetComponent<SEAction_SkillInfo>();
+            SkillInfo = SkillPrefab.GetComponent<SEAction_SkillInfo>();
             SkillInfo.SetOwner(gameObject);
 
             _CurAnimAttackIndex++;
-
-            
-
-
         }
 
     }
@@ -192,7 +190,11 @@ public class AnimCtrl : BasePlayer
         {
             Debug.Log("1");
         }
-        _IsPlaying = false;
+        else
+        {
+            _IsPlaying = false;
+        }
+      
     }
     #endregion
 
@@ -314,13 +316,54 @@ public class AnimCtrl : BasePlayer
     #endregion
 
     #region Player GetHit
+    bool IsGetHit = false;
     public void PlayerGetHit()
     {
+
+        //看一下你是否在播放攻击动画
+
+        if (Anim.IsInTransition(0))
+            return;
+
+        //如果你在融合期间 -> 不去播放受伤动画，减少血量就行
+
+        //如果不是在融合期间 && 在播放攻击动画 -> 是可以终端的
+
+        //我的攻击动画被中断，但是伤害技能已经产生的时候
+        //当前是否有技能存在，如果有，那么进行销毁
+        //1 ： 特效
+        //2 ： 伤害检测
+
+        if(null != SkillInfo)
+        {
+            SkillInfo.DestroyAllInst();
+        }
+
         IsReady = true;
         _IsPlaying = true;
+        IsGetHit = true;
         Anim.SetTrigger("Base Layer.GetHit");
     }
 
     #endregion
+
+    #region animation callback
+    void EventAnimEnd(int id)
+    {
+        eStateID ID = (eStateID)id;
+
+        switch(ID)
+        {
+            case eStateID.eGetHit:
+                {
+                    _IsPlaying = false;
+                    IsGetHit = false;
+                    break;
+                }
+        }
+    }
+    #endregion
+
+    //当我受伤的时候，如果当前在播放攻击动画，或者有技能在释放，那么需要提前回收
 
 }

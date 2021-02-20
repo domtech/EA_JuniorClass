@@ -34,6 +34,8 @@ public class SEAction_SpawnWorld : SEAction_BaseAction
         //spawn effect
         var effect = Instantiate(EffectSpawnInst);
 
+        se.SkillInfo.AddEffect(effect);
+
         var des = effect.GetComponent<SEAction_Destruction>();
         if(null != des)
         {

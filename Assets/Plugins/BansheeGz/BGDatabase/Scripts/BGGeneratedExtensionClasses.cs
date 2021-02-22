@@ -78,6 +78,28 @@ namespace com.dxz.config
 				_f_ModelPath[Index] = value;
 			}
 		}
+		public System.Int32 f_TypeID
+		{
+			get
+			{
+				return _f_TypeID[Index];
+			}
+			set
+			{
+				_f_TypeID[Index] = value;
+			}
+		}
+		public System.Int32 f_PlayerSide
+		{
+			get
+			{
+				return _f_PlayerSide[Index];
+			}
+			set
+			{
+				_f_PlayerSide[Index] = value;
+			}
+		}
 		private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_f_name;
 		public static BansheeGz.BGDatabase.BGFieldEntityName _f_name
 		{
@@ -94,6 +116,24 @@ namespace com.dxz.config
 			{
 				if(_ufle12jhs77_f_ModelPath==null || _ufle12jhs77_f_ModelPath.IsDeleted) _ufle12jhs77_f_ModelPath=(BansheeGz.BGDatabase.BGFieldString) MetaDefault.GetField(new BGId(5344841359766171021,4401716020436622263));
 				return _ufle12jhs77_f_ModelPath;
+			}
+		}
+		private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_f_TypeID;
+		public static BansheeGz.BGDatabase.BGFieldInt _f_TypeID
+		{
+			get
+			{
+				if(_ufle12jhs77_f_TypeID==null || _ufle12jhs77_f_TypeID.IsDeleted) _ufle12jhs77_f_TypeID=(BansheeGz.BGDatabase.BGFieldInt) MetaDefault.GetField(new BGId(4668756337813880954,143569509279615419));
+				return _ufle12jhs77_f_TypeID;
+			}
+		}
+		private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_f_PlayerSide;
+		public static BansheeGz.BGDatabase.BGFieldInt _f_PlayerSide
+		{
+			get
+			{
+				if(_ufle12jhs77_f_PlayerSide==null || _ufle12jhs77_f_PlayerSide.IsDeleted) _ufle12jhs77_f_PlayerSide=(BansheeGz.BGDatabase.BGFieldInt) MetaDefault.GetField(new BGId(5669408389661859786,4669642778236099729));
+				return _ufle12jhs77_f_PlayerSide;
 			}
 		}
 		private static readonly BGE_PlayerTemplate.Factory _factory0_PFS = new BGE_PlayerTemplate.Factory();
@@ -260,6 +300,39 @@ namespace com.dxz.config
 				_f_AttackDis[Index] = value;
 			}
 		}
+		public System.Single f_FinalSkillDis
+		{
+			get
+			{
+				return _f_FinalSkillDis[Index];
+			}
+			set
+			{
+				_f_FinalSkillDis[Index] = value;
+			}
+		}
+		public System.Collections.Generic.List<UnityEngine.Vector2> f_AnimPerArray
+		{
+			get
+			{
+				return _f_AnimPerArray[Index];
+			}
+			set
+			{
+				_f_AnimPerArray[Index] = value;
+			}
+		}
+		public System.Collections.Generic.List<UnityEngine.Vector2> f_AnimPerSkillArray
+		{
+			get
+			{
+				return _f_AnimPerSkillArray[Index];
+			}
+			set
+			{
+				_f_AnimPerSkillArray[Index] = value;
+			}
+		}
 		private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_f_name;
 		public static BansheeGz.BGDatabase.BGFieldEntityName _f_name
 		{
@@ -312,6 +385,33 @@ namespace com.dxz.config
 			{
 				if(_ufle12jhs77_f_AttackDis==null || _ufle12jhs77_f_AttackDis.IsDeleted) _ufle12jhs77_f_AttackDis=(BansheeGz.BGDatabase.BGFieldFloat) MetaDefault.GetField(new BGId(5261131599720559700,10360367657616889734));
 				return _ufle12jhs77_f_AttackDis;
+			}
+		}
+		private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_f_FinalSkillDis;
+		public static BansheeGz.BGDatabase.BGFieldFloat _f_FinalSkillDis
+		{
+			get
+			{
+				if(_ufle12jhs77_f_FinalSkillDis==null || _ufle12jhs77_f_FinalSkillDis.IsDeleted) _ufle12jhs77_f_FinalSkillDis=(BansheeGz.BGDatabase.BGFieldFloat) MetaDefault.GetField(new BGId(4840346143938840298,7829745129561242281));
+				return _ufle12jhs77_f_FinalSkillDis;
+			}
+		}
+		private static BansheeGz.BGDatabase.BGFieldListVector2 _ufle12jhs77_f_AnimPerArray;
+		public static BansheeGz.BGDatabase.BGFieldListVector2 _f_AnimPerArray
+		{
+			get
+			{
+				if(_ufle12jhs77_f_AnimPerArray==null || _ufle12jhs77_f_AnimPerArray.IsDeleted) _ufle12jhs77_f_AnimPerArray=(BansheeGz.BGDatabase.BGFieldListVector2) MetaDefault.GetField(new BGId(5003569505521262406,544511406612188843));
+				return _ufle12jhs77_f_AnimPerArray;
+			}
+		}
+		private static BansheeGz.BGDatabase.BGFieldListVector2 _ufle12jhs77_f_AnimPerSkillArray;
+		public static BansheeGz.BGDatabase.BGFieldListVector2 _f_AnimPerSkillArray
+		{
+			get
+			{
+				if(_ufle12jhs77_f_AnimPerSkillArray==null || _ufle12jhs77_f_AnimPerSkillArray.IsDeleted) _ufle12jhs77_f_AnimPerSkillArray=(BansheeGz.BGDatabase.BGFieldListVector2) MetaDefault.GetField(new BGId(5344287724654472746,10984566536519911093));
+				return _ufle12jhs77_f_AnimPerSkillArray;
 			}
 		}
 		private static readonly BGE_PlayerTemplate.Factory _factory0_PFS = new BGE_PlayerTemplate.Factory();

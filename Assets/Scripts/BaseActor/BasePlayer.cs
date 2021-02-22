@@ -14,6 +14,7 @@ public class BasePlayer : MonoBehaviour
 
     public float PlayerHeight => (characterCtrl.height);
 
+    [HideInInspector]
     public string PlayerName;
     //hp, attack
 
@@ -35,6 +36,9 @@ public class BasePlayer : MonoBehaviour
     protected int TypeId;
 
     public int TypeID => (TypeId);
+
+    protected string roleId;
+    public string RoleID => (roleId);
 
 
     protected virtual void Awake()

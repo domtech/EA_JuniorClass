@@ -42,9 +42,17 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void CloseUI<T>() where T : UIBase
+    public void CloseUI<T>(T t,  bool destroy = false) where T : UIBase
     {
-        //disable
+        if(destroy)
+        {
+            Destroy(t.gameObject);
+        }
+        else
+        {
+            t.gameObject.SetActive(false);
+        }
+   
     }
 
 

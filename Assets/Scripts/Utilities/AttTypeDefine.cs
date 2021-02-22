@@ -37,7 +37,7 @@ namespace AttTypeDefine
 
     public enum ePlayerSide
     {
-        ePlayer,
+        ePlayer = 0,
         eEnemy,
         eNPC,
     }

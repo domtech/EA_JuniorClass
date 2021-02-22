@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using AttTypeDefine;
 using DG.Tweening;
 using System.Collections.Generic;
+using com.dxz.config;
 
 public class AnimCtrl : BasePlayer
 {
@@ -44,31 +45,26 @@ public class AnimCtrl : BasePlayer
     {
         base.Start();
 
-        TypeId = TYPEID;
+        //todo
+        //TypeId = TYPEID;
 
-        AnimMgr.OnStart(this);
+        //AnimMgr.OnStart(this);
 
-        FinalSkillInst = JoyStickInst.FinalSkillBtnInst;
+        //FinalSkillInst = JoyStickInst.FinalSkillBtnInst;
 
-        Cam = Camera.main;
+        //Cam = Camera.main;
 
-        //var weapongo = GlobalHelper.FindGOByName(gameObject, "greatesword");
-        //if(null != weapongo)
-        //{
-        //    WeaponInst = weapongo.GetComponent<EmmaKnife>();
-        //    WeaponInst.OnStart(this);
-        //}
+        //JoyStickInst.FinalSkillBtnInst.PressDown.AddListener((a) => OnFinalSkillBegin(a));
+        //JoyStickInst.FinalSkillBtnInst.OnDragEvent.AddListener((a) => OnFinalSkillDrag(a));
+        //JoyStickInst.FinalSkillBtnInst.PressUp.AddListener((a) => OnFinalSkillEnd(a));
 
-        JoyStickInst.FinalSkillBtnInst.PressDown.AddListener((a) => OnFinalSkillBegin(a));
-        JoyStickInst.FinalSkillBtnInst.OnDragEvent.AddListener((a) => OnFinalSkillDrag(a));
-        JoyStickInst.FinalSkillBtnInst.PressUp.AddListener((a) => OnFinalSkillEnd(a));
-
-        LoadFinalSkillArrow();
+        //LoadFinalSkillArrow();
 
     }
     private void Update()
     {
-        UpdateSkillInput();
+        //todo
+        //UpdateSkillInput();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -364,6 +360,38 @@ public class AnimCtrl : BasePlayer
     }
     #endregion
 
-    //当我受伤的时候，如果当前在播放攻击动画，或者有技能在释放，那么需要提前回收
+    #region Create Player Actor
+    public static AnimCtrl CreatePlayerActor (string RoleName, BirthPoint bp)
+    {
+
+        BGE_PlayerTemplate PlayerTpl = GlobalHelper.GetTheEntityByName<BGE_PlayerTemplate>("PlayerTemplate", RoleName);
+
+        BGE_PlayerAttTemplate PlayerAttTpl = GlobalHelper.GetTheEntityByName<BGE_PlayerAttTemplate>("PlayerAttTemplate", RoleName);
+        //加载模型
+
+        var tmp = Resources.Load(PlayerTpl.f_ModelPath);
+
+        var actor = Instantiate(tmp, bp.transform.position, bp.transform.rotation) as GameObject;
+
+        //加载脚本
+
+        var ret = actor.AddComponent<AnimCtrl>();
+
+        //初始化所有数据
+
+        ret.PlayerName = RoleName;
+
+        ret.TypeId = PlayerTpl.f_TypeID;
+
+        ret.FinalSkillDis = PlayerAttTpl.f_FinalSkillDis;
+
+        ret.AnimPerArray = PlayerAttTpl.f_AnimPerArray.ToArray();
+
+        ret.AnimSkillPerArray = PlayerAttTpl.f_AnimPerSkillArray.ToArray();
+
+        //返回AnimCtrl
+        return ret;
+    }
+    #endregion
 
 }

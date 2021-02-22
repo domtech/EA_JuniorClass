@@ -12,6 +12,7 @@ public class FightManager : MonoBehaviour
      * 
      * */
 
+    public BirthPoint BP;
 
     UI_Login UILoginInst;
     //加载我们的Login UI
@@ -23,6 +24,8 @@ public class FightManager : MonoBehaviour
         //UILoginInst = login.GetComponent<UI_Login>();
 
         UILoginInst = UIManager.Inst.OpenUI<UI_Login>();
+
+        UILoginInst.OnStart(BP);
     }
 
     

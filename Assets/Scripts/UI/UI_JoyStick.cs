@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_JoyStick : MonoBehaviour
+public class UI_JoyStick : UIBase
 {
 
     #region Sys

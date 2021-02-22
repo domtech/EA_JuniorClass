@@ -7,7 +7,7 @@ public class CommonJoyBtn : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
 {
 
     #region sys
-    void Awake()
+    public virtual void Awake()
     {
         PressDown = new GameBtnEvent();
         OnDragEvent = new GameBtnEvent();

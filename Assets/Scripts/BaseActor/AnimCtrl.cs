@@ -10,6 +10,7 @@ public class AnimCtrl : BasePlayer
     #region Sys Funcs
     List<Transform> EnemyList;
 
+    [HideInInspector]
     public UI_JoyStick JoyStickInst;
 
     public int TYPEID = 1000;
@@ -33,6 +34,9 @@ public class AnimCtrl : BasePlayer
     eSkillType SkillType;
 
 
+    BGE_PlayerTemplate PlayerTpl;
+    BGE_PlayerAttTemplate PlayerAttTpl;
+
     SEAction_SkillInfo SkillInfo;
     protected override void Awake()
     {
@@ -45,26 +49,25 @@ public class AnimCtrl : BasePlayer
     {
         base.Start();
 
-        //todo
-        //TypeId = TYPEID;
 
-        //AnimMgr.OnStart(this);
+        Anim.runtimeAnimatorController = Instantiate(Resources.Load("AnimatorController/" + PlayerTpl.f_AnimCtrlPath)) as RuntimeAnimatorController;
 
-        //FinalSkillInst = JoyStickInst.FinalSkillBtnInst;
+        AnimMgr.OnStart(this);
 
-        //Cam = Camera.main;
+        FinalSkillInst = JoyStickInst.FinalSkillBtnInst;
 
-        //JoyStickInst.FinalSkillBtnInst.PressDown.AddListener((a) => OnFinalSkillBegin(a));
-        //JoyStickInst.FinalSkillBtnInst.OnDragEvent.AddListener((a) => OnFinalSkillDrag(a));
-        //JoyStickInst.FinalSkillBtnInst.PressUp.AddListener((a) => OnFinalSkillEnd(a));
+        Cam = Camera.main;
 
-        //LoadFinalSkillArrow();
+        JoyStickInst.FinalSkillBtnInst.PressDown.AddListener((a) => OnFinalSkillBegin(a));
+        JoyStickInst.FinalSkillBtnInst.OnDragEvent.AddListener((a) => OnFinalSkillDrag(a));
+        JoyStickInst.FinalSkillBtnInst.PressUp.AddListener((a) => OnFinalSkillEnd(a));
+
+        LoadFinalSkillArrow();
 
     }
     private void Update()
     {
-        //todo
-        //UpdateSkillInput();
+        UpdateSkillInput();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -378,7 +381,6 @@ public class AnimCtrl : BasePlayer
         var ret = actor.AddComponent<AnimCtrl>();
 
         //初始化所有数据
-
         ret.PlayerName = RoleName;
 
         ret.TypeId = PlayerTpl.f_TypeID;
@@ -388,6 +390,16 @@ public class AnimCtrl : BasePlayer
         ret.AnimPerArray = PlayerAttTpl.f_AnimPerArray.ToArray();
 
         ret.AnimSkillPerArray = PlayerAttTpl.f_AnimPerSkillArray.ToArray();
+
+        //加载JoyStick
+        ret.JoyStickInst = UIManager.Inst.OpenUI<UI_JoyStick>();
+
+        ret.JoyStickInst.OnStart();
+
+
+        ret.PlayerTpl = PlayerTpl;
+
+        ret.PlayerAttTpl = PlayerAttTpl;
 
         //返回AnimCtrl
         return ret;

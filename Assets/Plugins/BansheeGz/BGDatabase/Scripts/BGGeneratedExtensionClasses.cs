@@ -100,6 +100,17 @@ namespace com.dxz.config
 				_f_PlayerSide[Index] = value;
 			}
 		}
+		public System.String f_AnimCtrlPath
+		{
+			get
+			{
+				return _f_AnimCtrlPath[Index];
+			}
+			set
+			{
+				_f_AnimCtrlPath[Index] = value;
+			}
+		}
 		private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_f_name;
 		public static BansheeGz.BGDatabase.BGFieldEntityName _f_name
 		{
@@ -134,6 +145,15 @@ namespace com.dxz.config
 			{
 				if(_ufle12jhs77_f_PlayerSide==null || _ufle12jhs77_f_PlayerSide.IsDeleted) _ufle12jhs77_f_PlayerSide=(BansheeGz.BGDatabase.BGFieldInt) MetaDefault.GetField(new BGId(5669408389661859786,4669642778236099729));
 				return _ufle12jhs77_f_PlayerSide;
+			}
+		}
+		private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_f_AnimCtrlPath;
+		public static BansheeGz.BGDatabase.BGFieldString _f_AnimCtrlPath
+		{
+			get
+			{
+				if(_ufle12jhs77_f_AnimCtrlPath==null || _ufle12jhs77_f_AnimCtrlPath.IsDeleted) _ufle12jhs77_f_AnimCtrlPath=(BansheeGz.BGDatabase.BGFieldString) MetaDefault.GetField(new BGId(4848443893344252322,403082602048322489));
+				return _ufle12jhs77_f_AnimCtrlPath;
 			}
 		}
 		private static readonly BGE_PlayerTemplate.Factory _factory0_PFS = new BGE_PlayerTemplate.Factory();

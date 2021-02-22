@@ -5,7 +5,10 @@ public class UI_JoyStick : UIBase
 {
 
     #region Sys
-
+    public void OnStart()
+    {
+        FinalSkillBtnInst.Init();
+    }
     private void Start()
     {
         FinalSkillBtnInst.SetFinalSkillState(ShowFinalSkillBtn);

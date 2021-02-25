@@ -366,49 +366,17 @@ public class AnimCtrl : BasePlayer
     public static AnimCtrl CreatePlayerActor (string RoleName, BirthPoint bp)
     {
 
-        BGE_PlayerTemplate PlayerTpl = GlobalHelper.GetTheEntityByName<BGE_PlayerTemplate>("PlayerTemplate", RoleName);
+        var ret = CreateBaseActor<AnimCtrl>(RoleName, bp);
 
-        BGE_PlayerAttTemplate PlayerAttTpl = GlobalHelper.GetTheEntityByName<BGE_PlayerAttTemplate>("PlayerAttTemplate", RoleName);
-        //加载模型
-
-        var tmp = Resources.Load(PlayerTpl.f_ModelPath);
-
-        var actor = Instantiate(tmp, bp.transform.position, bp.transform.rotation) as GameObject;
-
-        actor.name = tmp.name;
-
-        //加载脚本
-
-        var ret = actor.AddComponent<AnimCtrl>();
-
-        //初始化所有数据
-        ret.PlayerName = RoleName;
-
-        ret.TypeId = PlayerTpl.f_TypeID;
-
-        ret.FinalSkillDis = PlayerAttTpl.f_FinalSkillDis;
-
-        ret.AnimPerArray = PlayerAttTpl.f_AnimPerArray.ToArray();
-
-        ret.AnimSkillPerArray = PlayerAttTpl.f_AnimPerSkillArray.ToArray();
-
+        ret.FinalSkillDis = ret.PlayerAttTpl.f_FinalSkillDis;
         //加载JoyStick
         ret.JoyStickInst = UIManager.Inst.OpenUI<UI_JoyStick>();
 
         ret.JoyStickInst.OnStart();
 
-        ret.PlayerTpl = PlayerTpl;
-
-        ret.PlayerAttTpl = PlayerAttTpl;
-
-        ret.PlayerSide = (ePlayerSide)PlayerTpl.f_PlayerSide;
-
         //添加movement input
         var input = ret.gameObject.AddComponent<MovementInput>();
         input.OnStart(ret);
-
-
-        ret.transform.localScale = Vector3.one * bp.Scale;
 
         //返回AnimCtrl
         return ret;

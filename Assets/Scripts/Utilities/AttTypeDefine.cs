@@ -10,8 +10,8 @@ namespace AttTypeDefine
     {
         eNULL,
         eFightStart,
-        eFighing,
         eFightOver,
+        eRestart,
     }
 
     public enum eSkillBindType

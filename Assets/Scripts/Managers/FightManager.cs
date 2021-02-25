@@ -46,14 +46,17 @@ public class FightManager : MonoBehaviour
                             AddEnemy(enemy);
                             break;
                         }
-                    case eGameProcedure.eFighing:
-                        {
-                            break;
-                        }
                     case eGameProcedure.eFightOver:
                         {
                             PlayerInst.SetPlayerDeath();//玩家的死亡逻辑
                             SetEnemyVictory();//敌人的欢呼
+                            break;
+                        }
+                    case eGameProcedure.eRestart:
+                        {
+                            //清理掉现有的所有数据
+                            //重新加载所需数据
+                            RestartGame();
                             break;
                         }
                 }
@@ -100,6 +103,21 @@ public class FightManager : MonoBehaviour
     private void Start()
     {
         UIManager.Inst.OpenUI<UI_Login>();
+    }
+
+    void RestartGame()
+    {
+        Destroy(PlayerInst.gameObject);
+
+        while(EnemyList.Count > 0)
+        {
+            var item = EnemyList[0];
+            EnemyList.Remove(item);
+            NpcActor.DestroySelf((NpcActor)item);
+        }
+
+        UIManager.Inst.OpenUI<UI_Login>();
+
     }
 
 }

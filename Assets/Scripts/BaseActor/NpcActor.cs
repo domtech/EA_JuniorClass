@@ -73,4 +73,15 @@ public class NpcActor : BasePlayer
     }
 
     #endregion
+
+    #region Self Destroy
+
+    public static void DestroySelf(NpcActor actor)
+    {
+        Destroy(actor.NpcHUD.gameObject);
+        Destroy(actor.gameObject);
+    }
+    #endregion
+
+
 }

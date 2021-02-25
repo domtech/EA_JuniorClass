@@ -3,7 +3,6 @@ using UnityEngine.EventSystems;
 using AttTypeDefine;
 using DG.Tweening;
 using System.Collections.Generic;
-using com.dxz.config;
 
 public class AnimCtrl : BasePlayer
 {
@@ -34,6 +33,9 @@ public class AnimCtrl : BasePlayer
     eSkillType SkillType;
 
     SEAction_SkillInfo SkillInfo;
+
+    MovementInput MoveInput;
+
     protected override void Awake()
     {
         base.Awake();
@@ -44,7 +46,6 @@ public class AnimCtrl : BasePlayer
     protected override void Start()
     {
         base.Start();
-
 
         Anim.runtimeAnimatorController = Instantiate(Resources.Load("AnimatorController/" + PlayerTpl.f_AnimCtrlPath)) as RuntimeAnimatorController;
 
@@ -358,6 +359,9 @@ public class AnimCtrl : BasePlayer
             case eStateID.eDie:
                 {
                     Debug.Log("Pop up game over ui");
+
+                    UIManager.Inst.OpenUI<UI_GameOver>();
+
                     break;
                 }
         }
@@ -377,8 +381,8 @@ public class AnimCtrl : BasePlayer
         ret.JoyStickInst.OnStart();
 
         //Ìí¼Ómovement input
-        var input = ret.gameObject.AddComponent<MovementInput>();
-        input.OnStart(ret);
+        ret.MoveInput = ret.gameObject.AddComponent<MovementInput>();
+        ret.MoveInput.OnStart(ret);
 
         //·µ»ØAnimCtrl
         return ret;
@@ -395,7 +399,8 @@ public class AnimCtrl : BasePlayer
         Anim.SetTrigger("Base Layer.Die");
         // close collider
         CharacCtrl.enabled = false;
-        //when die animation is over, pop up ui to tell game is over.
+        MoveInput.IsActive = false;
+       
     }
 
     #endregion

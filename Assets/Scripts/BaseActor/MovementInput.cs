@@ -52,11 +52,16 @@ public class MovementInput : MonoBehaviour
     float s1;
     float s2;
 
-    Camera Cam;
+    [HideInInspector]
+    public bool IsActive = true;
 
+    Camera Cam;
 
     bool CanMove()
     {
+
+        if (!IsActive)
+            return false;
 
         if (AnimCtrlInst.IsPlaying)//当前是否在播放攻击动画
         {

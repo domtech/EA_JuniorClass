@@ -5,6 +5,7 @@ public class BirthPoint : MonoBehaviour
 {
     public ePlayerSide PlayerSide = ePlayerSide.ePlayer;
 
+    public float Scale;
     private void OnDrawGizmos()
     {
         Color c = Color.red;

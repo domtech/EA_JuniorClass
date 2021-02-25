@@ -3,6 +3,14 @@ using UnityEngine;
 public class FightManager : MonoBehaviour
 {
 
+    CamManager CamMgr;
+    private void Awake()
+    {
+        var GOCam = Instantiate(Resources.Load("Maps/Cams")) as GameObject;
+        CamMgr = GOCam.GetComponent<CamManager>();
+         
+    }
+
     /*
      * (1) : UI_Login check
      * 
@@ -13,6 +21,8 @@ public class FightManager : MonoBehaviour
      * */
 
     public BirthPoint BP;
+
+    public BirthPoint EnemyBP;
 
     UI_Login UILoginInst;
     //加载我们的Login UI
@@ -25,7 +35,7 @@ public class FightManager : MonoBehaviour
 
         UILoginInst = UIManager.Inst.OpenUI<UI_Login>();
 
-        UILoginInst.OnStart(BP);
+        UILoginInst.OnStart(BP, EnemyBP, CamMgr);
     }
 
     

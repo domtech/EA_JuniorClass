@@ -34,8 +34,7 @@ public class AnimCtrl : BasePlayer
     eSkillType SkillType;
 
 
-    BGE_PlayerTemplate PlayerTpl;
-    BGE_PlayerAttTemplate PlayerAttTpl;
+  
 
     SEAction_SkillInfo SkillInfo;
     protected override void Awake()
@@ -376,6 +375,8 @@ public class AnimCtrl : BasePlayer
 
         var actor = Instantiate(tmp, bp.transform.position, bp.transform.rotation) as GameObject;
 
+        actor.name = tmp.name;
+
         //加载脚本
 
         var ret = actor.AddComponent<AnimCtrl>();
@@ -396,10 +397,18 @@ public class AnimCtrl : BasePlayer
 
         ret.JoyStickInst.OnStart();
 
-
         ret.PlayerTpl = PlayerTpl;
 
         ret.PlayerAttTpl = PlayerAttTpl;
+
+        ret.PlayerSide = (ePlayerSide)PlayerTpl.f_PlayerSide;
+
+        //添加movement input
+        var input = ret.gameObject.AddComponent<MovementInput>();
+        input.OnStart(ret);
+
+
+        ret.transform.localScale = Vector3.one * bp.Scale;
 
         //返回AnimCtrl
         return ret;

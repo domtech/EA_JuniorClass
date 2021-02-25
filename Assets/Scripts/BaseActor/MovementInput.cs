@@ -4,39 +4,48 @@ public class MovementInput : MonoBehaviour
 {
     #region System Function
 
-    private void Start()
+    public void OnStart(AnimCtrl ac)
     {
         Cam = Camera.main;
 
-        AnimCtrlInst = gameObject.GetComponent<AnimCtrl>();
+        AnimCtrlInst = ac;
 
+        CharCtrl = ac.CharacCtrl;
+
+        JoyStick = ac.JoyStickInst;
+
+        Anim = ac.Anim;
     }
 
     void Update()
     {
+
+        if (null == AnimCtrlInst)
+            return;
+
         if(CanMove())
         {
             SetPlayerAnimMovePam();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(null !=other.gameObject.GetComponent<Tur4Bullet>())
-        {
-            Destroy(other.gameObject);
-            //player play hit.
-            Anim.SetTrigger("Base Layer.GetHit");
-        }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(null !=other.gameObject.GetComponent<Tur4Bullet>())
+    //    {
+    //        Destroy(other.gameObject);
+    //        //player play hit.
+    //        Anim.SetTrigger("Base Layer.GetHit");
+    //    }
 
-    }
+    //}
     #endregion
 
     #region Player Animation Controller
     private AnimCtrl AnimCtrlInst;
-    public Animator Anim;
-    public CharacterController CharCtrl;
-    public UI_JoyStick JoyStick;
+    Animator Anim;
+    CharacterController CharCtrl;
+    UI_JoyStick JoyStick;
     float horizontal;
     float vertical;
     float speed;
@@ -102,6 +111,4 @@ public class MovementInput : MonoBehaviour
 
     #endregion
 
-    #region GetHit
-    #endregion
 }

@@ -1,7 +1,12 @@
 using UnityEngine;
 using AttTypeDefine;
+using com.dxz.config;
+
 public class BasePlayer : MonoBehaviour
 {
+
+    protected BGE_PlayerTemplate PlayerTpl;
+    protected BGE_PlayerAttTemplate PlayerAttTpl;
 
     private float playerraidus;
     public float PlayerRadius => (playerraidus);
@@ -48,14 +53,16 @@ public class BasePlayer : MonoBehaviour
         characterCtrl = GetComponent<CharacterController>();
 
         AnimMgr = gameObject.AddComponent<AnimatorManager>();
+
+        _Anim = GetComponent<Animator>();
+
     }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        _Anim = GetComponent<Animator>();
+      
         _BaseAttr.InitPlayerAttr(this, PlayerName);
-
         playerraidus = characterCtrl.radius * transform.localScale.x;
 
     }

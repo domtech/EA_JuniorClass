@@ -1,5 +1,4 @@
 using AttTypeDefine;
-using com.dxz.config;
 using UnityEngine;
 public class NpcActor : BasePlayer
 {
@@ -66,7 +65,7 @@ public class NpcActor : BasePlayer
         var ret = CreateBaseActor<NpcActor>(RoleName, bp);
 
         //load HUD
-        ret.NpcHUD = UIManager.Inst.OpenUI<UI_HUD>();
+        ret.NpcHUD = UIManager.Inst.OpenUI<UI_HUD>(true);
 
         //NpcActor
         return ret;

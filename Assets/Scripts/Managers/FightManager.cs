@@ -13,11 +13,13 @@ public class FightManager : MonoBehaviour
 
     List<BasePlayer> EnemyList ;
 
+    public int LeftEnemyCount => (EnemyList.Count);
+
     CamManager CamMgr;
 
     public BirthPoint BP;
 
-    public BirthPoint EnemyBP;
+    public BirthPoint[] EnemyBP;
 
     eGameProcedure gameprocedure = eGameProcedure.eNULL;
     public eGameProcedure GameProcedure
@@ -40,16 +42,28 @@ public class FightManager : MonoBehaviour
                             //启动相机
                             CamMgr.OnStart(PlayerInst);
 
+                            for(var i = 0; i < EnemyBP.Length; i++)
+                            {
+                                var enemy = NpcActor.CreateNpcActor(ConstData.SkeleName, EnemyBP[i]);
+                                enemy.OnStart(PlayerInst);
+                                AddEnemy(enemy);
+                            }
                             //加载怪兽
-                            var enemy = NpcActor.CreateNpcActor(ConstData.SkeleName, EnemyBP);
-                            enemy.OnStart(PlayerInst);
-                            AddEnemy(enemy);
+                           
                             break;
                         }
                     case eGameProcedure.eFightOver:
                         {
-                            PlayerInst.SetPlayerDeath();//玩家的死亡逻辑
-                            SetEnemyVictory();//敌人的欢呼
+
+                            if(PlayerInst.BaseAttr[ePlayerAttr.eHP] == 0 && EnemyList.Count > 0)//怪胜利
+                            {
+                                PlayerInst.SetPlayerGameOver(false);//玩家的死亡逻辑
+                                SetEnemyVictory();//敌人的欢呼
+                            }
+                            else if(EnemyList.Count == 0 && PlayerInst.BaseAttr[ePlayerAttr.eHP] >0)//玩家胜利
+                            {
+                                PlayerInst.SetPlayerGameOver(true);//玩家胜利逻辑
+                            }
                             break;
                         }
                     case eGameProcedure.eRestart:
@@ -75,6 +89,7 @@ public class FightManager : MonoBehaviour
     public void RemoveEnemy(BasePlayer bp) 
     {
         EnemyList.Remove(bp);
+
     }
 
     public void SetEnemyVictory()

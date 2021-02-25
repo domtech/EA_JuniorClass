@@ -14,19 +14,23 @@ public class UIManager : MonoBehaviour
 
 
     //加载UI
-    public T OpenUI<T> () where T : UIBase
+    public T OpenUI<T> (bool forceCreate = false) where T : UIBase
     {
-        for(var i = 0; i < transform.childCount; i++)
+        if(!forceCreate)
         {
-            var item = transform.GetChild(i);
-
-            if(item.name == typeof(T).Name)
+            for (var i = 0; i < transform.childCount; i++)
             {
-                item.gameObject.SetActive(true);
-                return item.GetComponent<T>();
-            }
+                var item = transform.GetChild(i);
 
+                if (item.name == typeof(T).Name)
+                {
+                    item.gameObject.SetActive(true);
+                    return item.GetComponent<T>();
+                }
+
+            }
         }
+       
 
         //加载一下我们的新UI
         var tmp = Resources.Load("UI/" + typeof(T).Name);

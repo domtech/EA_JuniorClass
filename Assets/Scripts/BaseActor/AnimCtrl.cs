@@ -358,10 +358,7 @@ public class AnimCtrl : BasePlayer
                 }
             case eStateID.eDie:
                 {
-                    Debug.Log("Pop up game over ui");
-
-                    UIManager.Inst.OpenUI<UI_GameOver>();
-
+                    //UIManager.Inst.OpenUI<UI_GameOver>();
                     break;
                 }
         }
@@ -391,12 +388,23 @@ public class AnimCtrl : BasePlayer
 
     #region Player Death
 
-    public void SetPlayerDeath()
+    public void SetPlayerGameOver(bool iswin)
     {
         //close UIJoyStick
         JoyStickInst.gameObject.SetActive(false);
         //Play die animation
-        Anim.SetTrigger("Base Layer.Die");
+        if(iswin)
+        {
+            Anim.SetTrigger("Base Layer.Victory");
+           
+        }
+        else
+        {
+            Anim.SetTrigger("Base Layer.Die");
+        }
+
+        UIManager.Inst.OpenUI<UI_GameOver>();
+
         // close collider
         CharacCtrl.enabled = false;
         MoveInput.IsActive = false;

@@ -81,8 +81,10 @@ public class NpcAICtrl : MonoBehaviour
                             {
                                 //关闭碰撞器,不在接收碰撞
                                 Owner.Anim.SetTrigger("Base Layer.Die");
-                                //角色播放完死亡动画，进行下沉
                                 Owner.CharacCtrl.enabled = false;
+
+                                //角色播放完死亡动画，进行下沉
+   
                                 break;
                             }
                         case eStateID.eVictory:
@@ -119,7 +121,7 @@ public class NpcAICtrl : MonoBehaviour
     void CastSkillEnd()
     {
   
-        if (NpcState == eStateID.eGetHit || NpcState == eStateID.eVictory)
+        if (NpcState == eStateID.eGetHit || NpcState == eStateID.eVictory || NpcState == eStateID.eDie)
             return;
 
         NpcState = GetCurNpcAIState(eStateID.eAttack);
@@ -326,7 +328,6 @@ public class NpcAICtrl : MonoBehaviour
             case eStateID.eGetHit:
                 {
                     StartCoroutine(WaitForAWhile());
-                   
                     break;
                 }
             case eStateID.eTaunting:
@@ -338,7 +339,11 @@ public class NpcAICtrl : MonoBehaviour
                 {
                     //下沉逻辑 : 在指定的时间内，Y轴位移指定的高度
                     Owner.transform.DOMoveY(-0.5f, 6f).OnComplete(()=> {
-                        Destroy(gameObject);
+                        NpcActor.DestroySelf(Owner);
+                        if(FightManager.Inst.LeftEnemyCount == 0)
+                        {
+                            FightManager.Inst.GameProcedure = eGameProcedure.eFightOver;
+                        }
                     });
                     break;
                 }

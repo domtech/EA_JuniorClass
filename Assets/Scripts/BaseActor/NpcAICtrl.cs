@@ -85,6 +85,11 @@ public class NpcAICtrl : MonoBehaviour
                                 Owner.CharacCtrl.enabled = false;
                                 break;
                             }
+                        case eStateID.eVictory:
+                            {
+                                Owner.Anim.SetTrigger("Base Layer.Victory");
+                                break;
+                            }
                     }
                 }
             }
@@ -114,7 +119,7 @@ public class NpcAICtrl : MonoBehaviour
     void CastSkillEnd()
     {
   
-        if (NpcState == eStateID.eGetHit)
+        if (NpcState == eStateID.eGetHit || NpcState == eStateID.eVictory)
             return;
 
         NpcState = GetCurNpcAIState(eStateID.eAttack);

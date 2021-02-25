@@ -47,6 +47,13 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
             {
                 ((NpcActor)defencer).SetAIState(eStateID.eDie);
                 ((AnimCtrl)attacker).EnemyDie(defencer.transform);
+                FightManager.Inst.RemoveEnemy(defencer);
+            }
+            else if(defencer.PlayerSide == ePlayerSide.ePlayer)
+            {
+                //((AnimCtrl)defencer).SetPlayerDeath();
+                FightManager.Inst.GameProcedure = eGameProcedure.eFightOver;
+               
             }
            
         }

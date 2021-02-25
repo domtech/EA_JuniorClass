@@ -1,42 +1,105 @@
 using UnityEngine;
+using AttTypeDefine;
+using System.Collections.Generic;
 
 public class FightManager : MonoBehaviour
 {
 
-    CamManager CamMgr;
-    private void Awake()
-    {
-        var GOCam = Instantiate(Resources.Load("Maps/Cams")) as GameObject;
-        CamMgr = GOCam.GetComponent<CamManager>();
-         
-    }
+    private static FightManager inst;
 
-    /*
-     * (1) : UI_Login check
-     * 
-     * (2) : 启动游戏 : 会自动弹（加载）出UI_Login
-     * 
-     * 点击UI_Login的登录按钮 -> 加载角色和对应的角色UI
-     * 
-     * */
+    public static FightManager Inst => (inst);
+
+    AnimCtrl PlayerInst;
+
+    List<BasePlayer> EnemyList ;
+
+    CamManager CamMgr;
 
     public BirthPoint BP;
 
     public BirthPoint EnemyBP;
 
-    UI_Login UILoginInst;
-    //加载我们的Login UI
-    private void Start()
+    eGameProcedure gameprocedure = eGameProcedure.eNULL;
+    public eGameProcedure GameProcedure
     {
-        //加载login
-        //var login = Instantiate(Resources.Load("UI/UI_Login")) as GameObject;
+        get
+        {
+            return gameprocedure;
+        }
+        set
+        {
+            if(value != gameprocedure)
+            {
+                switch(value)
+                {
+                    case eGameProcedure.eFightStart:
+                        {
+                            //加载玩家
+                            PlayerInst = AnimCtrl.CreatePlayerActor(ConstData.PlayerName, BP);
 
-        //UILoginInst = login.GetComponent<UI_Login>();
+                            //启动相机
+                            CamMgr.OnStart(PlayerInst);
 
-        UILoginInst = UIManager.Inst.OpenUI<UI_Login>();
-
-        UILoginInst.OnStart(BP, EnemyBP, CamMgr);
+                            //加载怪兽
+                            var enemy = NpcActor.CreateNpcActor(ConstData.SkeleName, EnemyBP);
+                            enemy.OnStart(PlayerInst);
+                            AddEnemy(enemy);
+                            break;
+                        }
+                    case eGameProcedure.eFighing:
+                        {
+                            break;
+                        }
+                    case eGameProcedure.eFightOver:
+                        {
+                            PlayerInst.SetPlayerDeath();//玩家的死亡逻辑
+                            SetEnemyVictory();//敌人的欢呼
+                            break;
+                        }
+                }
+                gameprocedure = value;
+            }
+        }
     }
 
-    
+
+    #region Enemy Mgr
+     void AddEnemy(BasePlayer bp) 
+    {
+        EnemyList.Add(bp);
+    }
+
+    public void RemoveEnemy(BasePlayer bp) 
+    {
+        EnemyList.Remove(bp);
+    }
+
+    public void SetEnemyVictory()
+    {
+        for(var i = 0; i < EnemyList.Count; i++)
+        {
+            //play victory animation
+            var item = EnemyList[i];
+
+            ((NpcActor)item).SetAIState(eStateID.eVictory);
+          
+        }
+    }
+
+
+    #endregion
+
+    private void Awake()
+    {
+        inst = this;
+        EnemyList = new List<BasePlayer>();
+        var GOCam = Instantiate(Resources.Load("Maps/Cams")) as GameObject;
+        CamMgr = GOCam.GetComponent<CamManager>();
+    }
+
+    private void Start()
+    {
+        UIManager.Inst.OpenUI<UI_Login>();
+    }
+
 }

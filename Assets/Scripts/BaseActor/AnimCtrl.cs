@@ -33,9 +33,6 @@ public class AnimCtrl : BasePlayer
 
     eSkillType SkillType;
 
-
-  
-
     SEAction_SkillInfo SkillInfo;
     protected override void Awake()
     {
@@ -358,6 +355,11 @@ public class AnimCtrl : BasePlayer
                     IsGetHit = false;
                     break;
                 }
+            case eStateID.eDie:
+                {
+                    Debug.Log("Pop up game over ui");
+                    break;
+                }
         }
     }
     #endregion
@@ -382,5 +384,21 @@ public class AnimCtrl : BasePlayer
         return ret;
     }
     #endregion
+
+    #region Player Death
+
+    public void SetPlayerDeath()
+    {
+        //close UIJoyStick
+        JoyStickInst.gameObject.SetActive(false);
+        //Play die animation
+        Anim.SetTrigger("Base Layer.Die");
+        // close collider
+        CharacCtrl.enabled = false;
+        //when die animation is over, pop up ui to tell game is over.
+    }
+
+    #endregion
+
 
 }

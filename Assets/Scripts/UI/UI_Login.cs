@@ -2,18 +2,20 @@ using UnityEngine;
 public class UI_Login : UIBase
 {
 
-    Canvas CanvasInst;
+    
 
-    private void Awake()
+    protected override void Awake()
     {
-        CanvasInst = GetComponent<Canvas>();
-        CanvasInst.worldCamera = Camera.main;
+        base.Awake();
     }
 
     public void OnLogin()
     {
 
-        FightManager.Inst.GameProcedure = AttTypeDefine.eGameProcedure.eFightStart;
+        //Æô¶¯loading
+        var tmp = UIManager.Inst.OpenUI<UI_Loading>();
+
+        tmp.OnStart();
 
         UIManager.Inst.CloseUI<UI_Login>(this, true);
     }

@@ -184,7 +184,6 @@ public class AnimCtrl : BasePlayer
         var state = Anim.GetCurrentAnimatorStateInfo(0);
         if(state.IsName("Base Layer.GetHit"))
         {
-            Debug.Log("1");
         }
         else
         {

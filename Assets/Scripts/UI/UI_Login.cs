@@ -13,7 +13,7 @@ public class UI_Login : UIBase
     {
 
         //Æô¶¯loading
-        var tmp = UIManager.Inst.OpenUI<UI_Loading>();
+        var tmp = UIManager.Inst.OpenUI<UI_LoadingV2>();
 
         tmp.OnStart();
 

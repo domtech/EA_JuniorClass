@@ -7,6 +7,7 @@ public class UIBase : MonoBehaviour
     {
         CanvasInst = GetComponent<Canvas>();
         CanvasInst.worldCamera = Camera.main;
+        CanvasInst.planeDistance = 1f;
     }
 
 }

@@ -61,10 +61,15 @@ public class AnimCtrl : MonoBehaviour
         if (!IsReady)
             return;
 
-        if(_CurAnimAttackIndex > MaxAnimAttackIndex)
+        if (Anim.IsInTransition(0))
+            return;
+
+        if (_CurAnimAttackIndex > MaxAnimAttackIndex)
         {
             _CurAnimAttackIndex = MinAnimAttackIndex;
         }
+
+      
 
         CurAnimName = AttackPre + _CurAnimAttackIndex.ToString();
         AnimMgr.StartAnimation(CurAnimName, CastSkillReady, CastSkillBegin, CastSkillEnd, CastSkillEnd1);

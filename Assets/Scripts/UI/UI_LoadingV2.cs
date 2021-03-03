@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.UI;
-
+using AttTypeDefine;
 public class UI_LoadingV2 : UIBase
 {
 
@@ -42,7 +42,7 @@ public class UI_LoadingV2 : UIBase
     void TriggerGame()
     {
         SetUIState();
-        FightManager.Inst.GameProcedure = AttTypeDefine.eGameProcedure.eFightStart;
+        FightManager.Inst.SetGameProcedure(eGameProcedure.eFightStart);
         UIManager.Inst.CloseUI<UI_LoadingV2>(this);
     }
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using AttTypeDefine;
 public class UI_Loading : UIBase
 {
     public Slider SliderInst;
@@ -38,7 +38,9 @@ public class UI_Loading : UIBase
         SliderInst.value = 0f;
         IsTrigger = false;
         TextInst.text = "0%";
-        FightManager.Inst.GameProcedure = AttTypeDefine.eGameProcedure.eFightStart;
+        var maincity = UIManager.Inst.OpenUI<UI_MainCity>();
+        maincity.OnStart();
+
         UIManager.Inst.CloseUI<UI_Loading>(this);
     }
 

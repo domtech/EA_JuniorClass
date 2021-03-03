@@ -52,8 +52,9 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
             else if(defencer.PlayerSide == ePlayerSide.ePlayer)
             {
                 //((AnimCtrl)defencer).SetPlayerDeath();
-                FightManager.Inst.GameProcedure = eGameProcedure.eFightOver;
-               
+              
+                FightManager.Inst.SetGameProcedure(eGameProcedure.eFightOver);
+
             }
            
         }

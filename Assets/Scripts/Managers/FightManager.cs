@@ -22,7 +22,7 @@ public class FightManager : MonoBehaviour
     public BirthPoint[] EnemyBP;
 
     eGameProcedure gameprocedure = eGameProcedure.eNULL;
-    public eGameProcedure GameProcedure
+    eGameProcedure GameProcedure
     {
         get
         {
@@ -133,6 +133,11 @@ public class FightManager : MonoBehaviour
 
         UIManager.Inst.OpenUI<UI_Login>();
 
+    }
+
+    public void SetGameProcedure (eGameProcedure procedure)
+    {
+        GameProcedure = procedure;
     }
 
 }

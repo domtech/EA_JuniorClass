@@ -342,7 +342,7 @@ public class NpcAICtrl : MonoBehaviour
                         NpcActor.DestroySelf(Owner);
                         if(FightManager.Inst.LeftEnemyCount == 0)
                         {
-                            FightManager.Inst.GameProcedure = eGameProcedure.eFightOver;
+                            FightManager.Inst.SetGameProcedure(eGameProcedure.eFightOver);
                         }
                     });
                     break;

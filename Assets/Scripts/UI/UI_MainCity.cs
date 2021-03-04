@@ -15,8 +15,6 @@ public class UI_MainCity : UIBase
     RenderTexture TargetTexture;
     bool IsTrigger = false;
 
-    
-
     public void OnStart ()
     {
         if(null != PlayerInst && null != Cam)
@@ -55,7 +53,6 @@ public class UI_MainCity : UIBase
 
     }
 
-
     private void Update()
     {
 
@@ -73,7 +70,9 @@ public class UI_MainCity : UIBase
     }
 
 
+    #endregion
 
+    #region Pages
     public void StartGame()
     {
         FightManager.Inst.SetGameProcedure(eGameProcedure.eFightStart);
@@ -87,43 +86,5 @@ public class UI_MainCity : UIBase
         IsTrigger = false;
     }
     #endregion
+
 }
-
-//
-
-//protected override void Awake()
-//{
-//    if(!IsTrigger)
-//    {
-
-
-
-//    }
-
-
-//}
-
-//private void Start()
-//{
-//    if (!IsTrigger)
-//    {
-//        TargetTexture = new RenderTexture((int)RawImageInst.rectTransform.rect.width, (int)RawImageInst.rectTransform.rect.height, 8, RenderTextureFormat.ARGB32);
-
-//        RawImageInst.texture = TargetTexture;
-
-//        GameObject CamObj = new GameObject("CamObj");
-
-//        Cam = CamObj.AddComponent<Camera>();
-
-//        Cam.targetTexture = TargetTexture;
-
-//        IsTrigger = true;
-//    }
-//    else
-//    {
-//        Cam.gameObject.SetActive(IsTrigger);
-
-//        PlayerInst.SetActive(IsTrigger);
-//    }
-
-//}

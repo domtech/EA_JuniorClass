@@ -31,6 +31,10 @@ public class UI_MainCity : UIBase
 
             PlayerInst = GlobalHelper.InstantiateMyPrefab("Models/Daughter_02", Vector3.right * 30f, Quaternion.identity);
 
+            var weapon = GlobalHelper.FindGOByName(PlayerInst, "greatesword");
+
+            weapon.SetActive(false);
+
             var Anim = PlayerInst.GetComponent<Animator>();
 
             Anim.runtimeAnimatorController = Instantiate(Resources.Load("AnimatorController/Daughter02AnimCtrl")) as RuntimeAnimatorController;

@@ -1,20 +1,41 @@
-﻿using UnityEngine;
+﻿using AttTypeDefine;
+using UnityEngine;
 
 public class BagTabCtrl : MonoBehaviour
 {
 
+    public GameEventInt EventInst;
+
     TabItem[] TabItemArray;
 
-    int tabIndex = 0;
-    public int TabIndex => tabIndex;
-
-    private void Awake()
+    int tabIndex = -1;
+    public int TabIndex
     {
-       
+        get
+        {
+            return tabIndex;
+        }
+        set
+        {
+            if (value != tabIndex)
+            {
+                tabIndex = value;
+                EventInst.Invoke(tabIndex);
+            } 
+        }
+    }
+
+    private void Start()
+    {
+      
         TabItemArray = gameObject.GetComponentsInChildren<TabItem>();
-        tabIndex = 0;
+        TabIndex = 0;
         TabItemArray[tabIndex].SetTabItemState(true);
     }
+
+    
+
+
 
     public void ClickTabItem(int index)
     {
@@ -22,7 +43,7 @@ public class BagTabCtrl : MonoBehaviour
         {
             if(i == index)
             {
-                tabIndex = i;
+                TabIndex = i;
                 TabItemArray[i].SetTabItemState(true);
             }
             else

@@ -71,6 +71,8 @@ namespace AttTypeDefine
 
     public class GameEvent : UnityEvent { };
 
+    public class GameEventInt : UnityEvent<int> { };
+
     public class GameBtnEvent : UnityEvent<PointerEventData> { };
 
 }

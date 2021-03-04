@@ -5,13 +5,11 @@ using UnityEngine;
 public class BaseAttributes : MonoBehaviour
 {
 
-
     private float speed;
     public float Speed =>(speed);
 
     private float attackdis;
     public float AttackDis => (attackdis);
-
 
     //hp, attack
     int[] attrs;
@@ -27,8 +25,6 @@ public class BaseAttributes : MonoBehaviour
         attrs = new int[(int)ePlayerAttr.eSize];
     }
 
-
-
     //建立表格 check
 
     //填写表格数据 check
@@ -36,7 +32,6 @@ public class BaseAttributes : MonoBehaviour
     //读取表格数据
 
     //将表格数据赋值给BaseAttributes的成员变量们
-
 
     //初始化角色的基础信息
     public void InitPlayerAttr (BasePlayer bp, string Name)
@@ -54,7 +49,6 @@ public class BaseAttributes : MonoBehaviour
         attackdis = PlayerAttTpl.f_AttackDis;
 
     }
-
 
     public int this[ePlayerAttr att]
     {
@@ -108,5 +102,4 @@ public class BaseAttributes : MonoBehaviour
         }
     }
 
-   
 }

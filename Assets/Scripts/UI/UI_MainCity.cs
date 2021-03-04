@@ -85,6 +85,11 @@ public class UI_MainCity : UIBase
 
         IsTrigger = false;
     }
+
+    public void StartCharacterSelect()
+    {
+        UIManager.Inst.OpenUI<UI_CharacterSelect>();
+    }
     #endregion
 
 }

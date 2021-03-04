@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class CharacterItem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public GameObject[] BGArray;
+ 
+
+    void SetBGState(int type)
     {
-        
+
+        for(var i = 0; i < 3; i++)
+        {
+            if(type == i)
+            {
+                BGArray[i].SetActive(true);
+            }
+            else
+            {
+                BGArray[i].SetActive(false);
+            }
+        }
+
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnStart (int type)
     {
-        
+        SetBGState(type);
     }
 }

@@ -4,7 +4,6 @@ public class UI_CharacterSelect : UIBase
 {
     public Transform ContentInst;
 
-
     public int CharacterNumber;
 
     public CharacterItem ItemTpl;
@@ -23,6 +22,11 @@ public class UI_CharacterSelect : UIBase
             var pos = item.transform.localPosition;
             pos.z = 0f;
             item.transform.localPosition = pos;
+
+            var character = item.GetComponent<CharacterItem>();
+
+            var type = Random.Range(0, 3);
+            character.OnStart(type);
         }
 
         Destroy(ItemTpl.gameObject);

@@ -1040,6 +1040,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0e233691b8c6a499cc2cd64b23a730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGArray:
+  - {fileID: 1061269359576127682}
+  - {fileID: 1371639571390601893}
+  - {fileID: 7729851184387513798}
 --- !u!1 &7729851184387513798
 GameObject:
   m_ObjectHideFlags: 0

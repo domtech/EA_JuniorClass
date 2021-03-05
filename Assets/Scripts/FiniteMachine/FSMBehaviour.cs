@@ -4,12 +4,15 @@ using UnityEngine;
 public class FSMBehaviour : MonoBehaviour
 {
     FSMSystem SysInst;
+    NpcActor Owner;
 
-    private void Awake()
+    public void OnStart (NpcActor na)
     {
+        Owner = na;
         (SysInst = new FSMSystem()).OnStart();
         InitFSM();
     }
+
 
     private void Update()
     {
@@ -23,7 +26,7 @@ public class FSMBehaviour : MonoBehaviour
 
     void InitFSM()
     {
-        var idle = new FSM_Idle();
+        var idle = new FSM_Idle(Owner);
 
 
         SysInst.AddState(idle);

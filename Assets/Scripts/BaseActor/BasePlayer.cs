@@ -12,7 +12,8 @@ public class BasePlayer : MonoBehaviour
     public float PlayerRadius => (playerraidus);
 
     protected AnimatorManager AnimMgr;
- 
+    public AnimatorManager AnimMgrInst => AnimMgr;
+
     private CharacterController characterCtrl;
 
     public CharacterController CharacCtrl => (characterCtrl);
@@ -63,6 +64,7 @@ public class BasePlayer : MonoBehaviour
     {
         _BaseAttr.InitPlayerAttr(this, PlayerName);
         playerraidus = characterCtrl.radius * transform.localScale.x;
+        AnimMgr.OnStart(this);
 
     }
 

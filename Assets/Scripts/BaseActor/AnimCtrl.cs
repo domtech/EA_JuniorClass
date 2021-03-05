@@ -49,7 +49,7 @@ public class AnimCtrl : BasePlayer
 
         Anim.runtimeAnimatorController = Instantiate(Resources.Load("AnimatorController/" + PlayerTpl.f_AnimCtrlPath)) as RuntimeAnimatorController;
 
-        AnimMgr.OnStart(this);
+       
 
         FinalSkillInst = JoyStickInst.FinalSkillBtnInst;
 

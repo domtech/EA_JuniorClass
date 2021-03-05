@@ -308,10 +308,6 @@ public class NpcAICtrl : MonoBehaviour
         {
             return dicPer[listPer[2]];
         }
-
-
-
-        return eStateID.eNULL;
     }
 
     void EventAnimBegin()

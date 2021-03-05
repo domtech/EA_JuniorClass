@@ -29,4 +29,10 @@ public class FSM_Chase : FSMState
         //播放追击动画
         Owner.Anim.SetFloat("Speed", 1f);
     }
+
+    public override void OnEnd()
+    {
+        Owner.Anim.SetFloat("Speed", 0f);
+    }
+
 }

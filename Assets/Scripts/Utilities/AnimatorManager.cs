@@ -46,6 +46,47 @@ public class AnimatorManager : MonoBehaviour
     }
 
 
+    void EventAnimBegin()
+    {
+
+    }
+
+    void EventAnimEnd(int id)
+    {
+        eStateID ID = (eStateID)id;
+
+        switch (ID)
+        {
+            case eStateID.eGetHit:
+                {
+                    //StartCoroutine(WaitForAWhile());
+                    break;
+                }
+            case eStateID.eTaunting:
+                {
+
+                    if(AnimInst.PlayerSide == ePlayerSide.eEnemy)
+                    {
+                        ((NpcActor)AnimInst).FSMInst.SetTransition(eStateID.eChase);
+                    }
+
+                    break;
+                }
+            case eStateID.eDie:
+                {
+                    //下沉逻辑 : 在指定的时间内，Y轴位移指定的高度
+                    //Owner.transform.DOMoveY(-0.5f, 6f).OnComplete(() => {
+                    //    NpcActor.DestroySelf(Owner);
+                    //    if (FightManager.Inst.LeftEnemyCount == 0)
+                    //    {
+                    //        FightManager.Inst.SetGameProcedure(eGameProcedure.eFightOver);
+                    //    }
+                    //});
+                    break;
+                }
+        }
+    }
+
 
 
 }

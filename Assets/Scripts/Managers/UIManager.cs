@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
         var tmp = Resources.Load("UI/" + typeof(T).Name);
         var uiitem = Instantiate(tmp) as GameObject;
         uiitem.name = tmp.name;
-        uiitem.transform.parent = transform;
+        uiitem.transform.SetParent(transform);
         uiitem.transform.localPosition = Vector3.zero;
         uiitem.transform.localRotation = Quaternion.identity;
         uiitem.transform.localScale = Vector3.one;

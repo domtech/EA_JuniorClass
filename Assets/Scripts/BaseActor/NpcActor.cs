@@ -69,8 +69,11 @@ public class NpcActor : BasePlayer
 
         var ret = CreateBaseActor<NpcActor>(RoleName, bp);
 
-        ret.fsminst = ret.gameObject.AddComponent<FSMBehaviour>();
-        ret.fsminst.OnStart(ret);
+        ret.InvokeNextFrame(() => {
+            ret.fsminst = ret.gameObject.AddComponent<FSMBehaviour>();
+            ret.fsminst.OnStart(ret);
+        });
+      
         //load HUD
         ret.NpcHUD = UIManager.Inst.OpenUI<UI_HUD>(true);
 

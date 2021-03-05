@@ -1,6 +1,6 @@
 ﻿
 using UnityEngine;
-
+using AttTypeDefine;
 public class FSMBehaviour : MonoBehaviour
 {
     FSMSystem SysInst;
@@ -27,15 +27,17 @@ public class FSMBehaviour : MonoBehaviour
     void InitFSM()
     {
         var idle = new FSM_Idle(Owner);
-
+        var chase = new FSM_Chase(Owner);
 
         SysInst.AddState(idle);
+        SysInst.AddState(chase);
     }
 
 
-    //我们希望游戏启动，角色能够进入idle状态
-
-    //FSMBehaviour -> Idle State
+    public void SetTransition (eStateID id)
+    {
+        SysInst.SetTransition(id);
+    }
 
 
 

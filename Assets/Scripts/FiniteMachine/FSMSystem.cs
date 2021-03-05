@@ -25,6 +25,7 @@ public class FSMSystem
             if(DicState.Count == 0)
             {
                 CurState = state;
+                CurState.OnStart();
             }
             DicState.Add(state.StateId, state);
 
@@ -53,7 +54,9 @@ public class FSMSystem
         }
         else
         {
+            CurState.OnEnd();
             CurState = tmpNew;
+            CurState.OnStart();
         }
     }
 

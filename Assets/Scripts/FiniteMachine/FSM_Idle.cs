@@ -8,7 +8,7 @@ public class FSM_Idle : FSMState
     public override void OnUpdate()
     {
 
-        if(Vector3.Distance(Owner.transform.position, PlayerInst.transform.position) < 3f)
+        if(Vector3.Distance(Owner.transform.position, PlayerInst.transform.position) < 5f)
         {
             // SetTransition(eState.Chase);
             Owner.FSMInst.SetTransition(AttTypeDefine.eStateID.eChase);

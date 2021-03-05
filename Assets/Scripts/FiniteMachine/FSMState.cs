@@ -12,8 +12,20 @@ public abstract class FSMState
         PlayerInst = Owner.PlayerInst;
     }
 
+
+    public virtual void OnStart ()
+    {
+
+    }
+
    public virtual void OnUpdate()
     {
 
     }
+
+    public virtual void OnEnd()
+    {
+
+    }
+
 }

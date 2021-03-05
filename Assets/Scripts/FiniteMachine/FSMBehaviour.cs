@@ -28,9 +28,10 @@ public class FSMBehaviour : MonoBehaviour
     {
         var idle = new FSM_Idle(Owner);
         var chase = new FSM_Chase(Owner);
-
+        var attack = new FSM_Attack(Owner);
         SysInst.AddState(idle);
         SysInst.AddState(chase);
+        SysInst.AddState(attack);
     }
 
 

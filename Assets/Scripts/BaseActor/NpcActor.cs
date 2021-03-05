@@ -27,8 +27,8 @@ public class NpcActor : BasePlayer
     public void OnStart(AnimCtrl player)
     {
         PlayerInst = player;
-        AICtrl = gameObject.AddComponent<NpcAICtrl>();
-        AICtrl.OnStart(this);
+        //AICtrl = gameObject.AddComponent<NpcAICtrl>();
+        //AICtrl.OnStart(this);
     }
 
     public void Update()
@@ -50,12 +50,17 @@ public class NpcActor : BasePlayer
     #endregion
 
     #region Npc AI Ctrl
-
     public void SetAIState(eStateID state)
     {
+        if (null == AICtrl)
+            return;
         AICtrl.NpcState = state;
     }
+    #endregion
 
+    #region FSMBehaviour
+    private FSMBehaviour fsminst;
+    public FSMBehaviour FSMInst => fsminst;
     #endregion
 
     #region Load Enemy
@@ -63,6 +68,8 @@ public class NpcActor : BasePlayer
     {
 
         var ret = CreateBaseActor<NpcActor>(RoleName, bp);
+
+        ret.fsminst = ret.gameObject.AddComponent<FSMBehaviour>();
 
         //load HUD
         ret.NpcHUD = UIManager.Inst.OpenUI<UI_HUD>(true);

@@ -13,9 +13,11 @@ public class UI_Login : UIBase
     {
 
         //Æô¶¯loading
-        var tmp = UIManager.Inst.OpenUI<UI_Loading>();
+        //var tmp = UIManager.Inst.OpenUI<UI_Loading>();
 
-        tmp.OnStart();
+        //tmp.OnStart();
+
+        FightManager.Inst.SetGameProcedure(AttTypeDefine.eGameProcedure.eFightStart);
 
         UIManager.Inst.CloseUI<UI_Login>(this, true);
     }

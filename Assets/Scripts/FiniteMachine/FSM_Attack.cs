@@ -99,6 +99,7 @@ public class FSM_Attack : FSMState
 
     void CastSkillEnd()
     {
+
         var tmp = GetCurNpcAIState();        
         Owner.FSMInst.SetTransition(tmp);
     }

@@ -1,5 +1,7 @@
 using UnityEngine;
 using AttTypeDefine;
+using System.Collections;
+
 public class AnimatorManager : MonoBehaviour
 {
 
@@ -59,7 +61,10 @@ public class AnimatorManager : MonoBehaviour
         {
             case eStateID.eGetHit:
                 {
-                    //StartCoroutine(WaitForAWhile());
+                    if (AnimInst.PlayerSide == ePlayerSide.eEnemy)
+                    {
+                        StartCoroutine(WaitForAWhile());
+                    }
                     break;
                 }
             case eStateID.eTaunting:
@@ -86,6 +91,16 @@ public class AnimatorManager : MonoBehaviour
                 }
         }
     }
+
+
+    IEnumerator WaitForAWhile()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        //NpcState = GetCurNpcAIState(eStateID.eGetHit);
+        ((NpcActor)AnimInst).FSMInst.ProcessEvent(eStateID.eGetHit);
+    }
+
 
 
 

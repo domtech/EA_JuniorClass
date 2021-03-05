@@ -6,7 +6,6 @@ public class FSM_Taunt : FSMState
 
     public override void OnStart()
     {
-        
         Owner.Anim.SetTrigger("Base Layer.Taunting");
     }
 

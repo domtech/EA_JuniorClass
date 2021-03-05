@@ -28,4 +28,9 @@ public abstract class FSMState
 
     }
 
+    public virtual void DoEvent(object param)
+    {
+
+    }
+
 }

@@ -120,7 +120,7 @@ public class NpcAICtrl : MonoBehaviour
 
     void CastSkillEnd()
     {
-  
+    
         if (NpcState == eStateID.eGetHit || NpcState == eStateID.eVictory || NpcState == eStateID.eDie)
             return;
 

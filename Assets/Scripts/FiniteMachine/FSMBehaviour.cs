@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using AttTypeDefine;
 public class FSMBehaviour : MonoBehaviour
 {
@@ -31,12 +30,13 @@ public class FSMBehaviour : MonoBehaviour
         var attack = new FSM_Attack(Owner);
         var taunt = new FSM_Taunt(Owner);
         var walkback = new FSM_WalkBack(Owner);
-        
+        var gethit = new FSM_GetHit(Owner);
         SysInst.AddState(idle);
         SysInst.AddState(chase);
         SysInst.AddState(attack);
         SysInst.AddState(taunt);
         SysInst.AddState(walkback);
+        SysInst.AddState(gethit);
     }
 
 
@@ -45,6 +45,12 @@ public class FSMBehaviour : MonoBehaviour
         SysInst.SetTransition(id);
     }
 
+
+    public void ProcessEvent(object param)
+    {
+        SysInst.CurState.DoEvent(param);
+    }
+         
 
 
 }

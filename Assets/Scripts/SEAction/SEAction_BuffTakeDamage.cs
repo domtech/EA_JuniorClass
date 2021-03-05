@@ -71,7 +71,7 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
 
                         if(defencer.PlayerSide == ePlayerSide.eEnemy)
                         {
-                            ((NpcActor)defencer).SetAIState(eStateID.eGetHit);
+                            ((NpcActor)defencer).FSMInst.SetTransition(eStateID.eGetHit);
                         }
                         else if(defencer.PlayerSide == ePlayerSide.ePlayer)
                         {

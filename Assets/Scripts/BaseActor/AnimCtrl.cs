@@ -45,11 +45,11 @@ public class AnimCtrl : BasePlayer
 
     protected override void Start()
     {
-        base.Start();
+        
 
         Anim.runtimeAnimatorController = Instantiate(Resources.Load("AnimatorController/" + PlayerTpl.f_AnimCtrlPath)) as RuntimeAnimatorController;
 
-       
+        base.Start();
 
         FinalSkillInst = JoyStickInst.FinalSkillBtnInst;
 

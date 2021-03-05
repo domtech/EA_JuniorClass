@@ -1,6 +1,7 @@
 using UnityEngine;
 using AttTypeDefine;
 using System.Collections;
+using DG.Tweening;
 
 public class AnimatorManager : MonoBehaviour
 {
@@ -79,14 +80,19 @@ public class AnimatorManager : MonoBehaviour
                 }
             case eStateID.eDie:
                 {
-                    //下沉逻辑 : 在指定的时间内，Y轴位移指定的高度
-                    //Owner.transform.DOMoveY(-0.5f, 6f).OnComplete(() => {
-                    //    NpcActor.DestroySelf(Owner);
-                    //    if (FightManager.Inst.LeftEnemyCount == 0)
-                    //    {
-                    //        FightManager.Inst.SetGameProcedure(eGameProcedure.eFightOver);
-                    //    }
-                    //});
+                    if (AnimInst.PlayerSide == ePlayerSide.eEnemy)
+                    {
+                        //下沉逻辑 : 在指定的时间内，Y轴位移指定的高度
+                        AnimInst.transform.DOMoveY(-0.5f, 6f).OnComplete(() =>
+                        {
+                            NpcActor.DestroySelf((NpcActor)AnimInst);
+                            if (FightManager.Inst.LeftEnemyCount == 0)
+                            {
+                                FightManager.Inst.SetGameProcedure(eGameProcedure.eFightOver);
+                            }
+                        });
+                    }
+                    
                     break;
                 }
         }

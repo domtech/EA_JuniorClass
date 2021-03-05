@@ -99,11 +99,19 @@ public class FightManager : MonoBehaviour
             //play victory animation
             var item = EnemyList[i];
 
-            ((NpcActor)item).SetAIState(eStateID.eVictory);
+            ((NpcActor)item).FSMInst.SetTransition(eStateID.eVictory);
           
         }
     }
 
+
+    /*
+     * 1 热更模块 ： 链接远程服务器，下载必要的资源。
+     * 2 性能: shader, texture, mesh, animation, particle。
+     * 
+     * 
+     * 
+     * */
 
     #endregion
 

@@ -99,9 +99,15 @@ public class FSM_Attack : FSMState
 
     void CastSkillEnd()
     {
-
-        var tmp = GetCurNpcAIState();        
-        Owner.FSMInst.SetTransition(tmp);
+        if(
+            Owner.FSMInst.IsInState(eStateID.eAttack)
+            )
+        {
+            var tmp = GetCurNpcAIState();
+            Owner.FSMInst.SetTransition(tmp);
+        }
+        
+     
     }
 
 

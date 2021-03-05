@@ -45,7 +45,7 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
 
             if (defencer.PlayerSide == ePlayerSide.eEnemy)
             {
-                ((NpcActor)defencer).SetAIState(eStateID.eDie);
+                ((NpcActor)defencer).FSMInst.SetTransition(eStateID.eDie);
                 ((AnimCtrl)attacker).EnemyDie(defencer.transform);
                 FightManager.Inst.RemoveEnemy(defencer);
             }
@@ -84,7 +84,7 @@ public class SEAction_BuffTakeDamage : SEAction_BaseAction
                     {
                         if (defencer.PlayerSide == ePlayerSide.eEnemy)
                         {
-                            ((NpcActor)defencer).SetAIState(eStateID.eFlyAway);
+                            ((NpcActor)defencer).FSMInst.SetTransition(eStateID.eFlyAway);
                         }
                         break;
                     }
